@@ -555,8 +555,8 @@ namespace mlir
         else if (formats_str.compare("BCSR") == 0)
         {
           allFormats[i].push_back("D");
-          allFormats[i].push_back("CN");
           allFormats[i].push_back("D");
+          allFormats[i].push_back("CN");
           allFormats[i].push_back("D");
         }
         else if (formats_str.compare("CSB") == 0)
@@ -860,8 +860,8 @@ namespace mlir
         else if (formats_str.compare(0, 4, "BCSR") == 0)
         { /// BCSR
           dim_format.push_back(format_dense);
-          dim_format.push_back(format_compressednonunique);
           dim_format.push_back(format_dense);
+          dim_format.push_back(format_compressednonunique);
           dim_format.push_back(format_dense);
         }
         else if (formats_str.compare(0, 3, "CSB") == 0)
@@ -1023,8 +1023,8 @@ namespace mlir
         else if (formats_str.compare(0, 4, "BCSR") == 0)
         { /// BCSR
           dim_format.push_back(format_dense);
-          dim_format.push_back(format_compressed);
           dim_format.push_back(format_dense);
+          dim_format.push_back(format_compressed);
           dim_format.push_back(format_dense);
         }
         else if (formats_str.compare(0, 3, "CSB") == 0)
