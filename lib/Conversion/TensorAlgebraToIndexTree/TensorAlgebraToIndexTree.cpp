@@ -149,21 +149,22 @@ void doTensorMultOp(TensorMultOp op, unique_ptr<Index_Tree> &tree)
   comet_vdump(mask_tensor);
 
   auto allPerms = getAllPerms(op.getIndexingMaps());
+  auto allBlocks = getAllBlocks(op.getFormatsAttr(), allPerms);
   auto allFormats = getAllFormats(op.getFormatsAttr(), allPerms);
   auto SemiringOp = op.getSemiringAttr();
   auto MaskingTypeAttr = op.getMaskTypeAttr();
 
   assert(allPerms.size() == 3);
 
-  auto B = tree->getOrCreateTensor(rhs1_tensor, allFormats[0]);
-  auto C = tree->getOrCreateTensor(rhs2_tensor, allFormats[1]);
-  auto A = tree->getOrCreateTensor(lhs_tensor, allFormats[2]);
+  auto B = tree->getOrCreateTensor(rhs1_tensor, allFormats[0], allBlocks[0]);
+  auto C = tree->getOrCreateTensor(rhs2_tensor, allFormats[1], allBlocks[1]);
+  auto A = tree->getOrCreateTensor(lhs_tensor, allFormats[2], allBlocks[2]);
   Tensor *M;
   std::unique_ptr<UnitExpression> e;
   if (mask_tensor != nullptr) /// mask is an optional input
   {
     comet_debug() << "mask input provided by user\n";
-    M = tree->getOrCreateTensor(mask_tensor, allFormats[2]); /// format same as lhs_tensor
+    M = tree->getOrCreateTensor(mask_tensor, allFormats[2], allBlocks[2]); /// format same as lhs_tensor
     e = make_unique<UnitExpression>(A, B, C, M, "*");
   }
   else
@@ -225,14 +226,15 @@ void doElementWiseOp(T op, unique_ptr<Index_Tree> &tree)
 
   auto allPerms = getAllPerms(op.getIndexingMaps());
   auto allFormats = getAllFormats(op.getFormatsAttr(), allPerms);
+  auto allBlocks = getAllBlocks(op.getFormatsAttr(), allPerms);
   auto SemiringOp = op.getSemiringAttr();
   auto maskAttr = "none";
 
   assert(allPerms.size() == 3);
 
-  auto B = tree->getOrCreateTensor(rhs1_tensor, allFormats[0]);
-  auto C = tree->getOrCreateTensor(rhs2_tensor, allFormats[1]);
-  auto A = tree->getOrCreateTensor(lhs_tensor, allFormats[2]);
+  auto B = tree->getOrCreateTensor(rhs1_tensor, allFormats[0], allBlocks[0]);
+  auto C = tree->getOrCreateTensor(rhs2_tensor, allFormats[1], allBlocks[1]);
+  auto A = tree->getOrCreateTensor(lhs_tensor, allFormats[2], allBlocks[2]);
 
   auto e = make_unique<UnitExpression>(A, B, C, "*");
 
@@ -335,6 +337,27 @@ IndexTreeComputeOp createComputeNodeOp(OpBuilder &builder, TreeNode *node, Locat
     }
     allFormats_lhs.push_back(builder.getStrArrayAttr(formats));
   }
+  
+  SmallVector<Attribute, 8> allBlocks_rhs;
+  for (auto t : expr->getOperands())
+  {
+    SmallVector<StringRef, 8> blocks;
+    for (auto &b : t->getBlocks())
+    {
+      blocks.push_back(b);
+    }
+    allBlocks_rhs.push_back(builder.getStrArrayAttr(blocks));
+  }
+  SmallVector<Attribute, 8> allBlocks_lhs;
+  for (auto t : expr->getResults())
+  {
+    SmallVector<StringRef, 8> blocks;
+    for (auto &b : t->getBlocks())
+    {
+      blocks.push_back(b);
+    }
+    allBlocks_lhs.push_back(builder.getStrArrayAttr(blocks));
+  }
 
   std::vector<Value> t_rhs;
   Value t_lhs = expr->getLHS()->getValue();
@@ -353,12 +376,14 @@ IndexTreeComputeOp createComputeNodeOp(OpBuilder &builder, TreeNode *node, Locat
   Value leafop_rhs = builder.create<indexTree::IndexTreeComputeRHSOp>(loc,
                                                                       mlir::UnrankedTensorType::get(builder.getF64Type()), t_rhs,
                                                                       builder.getArrayAttr(allIndices_rhs),
-                                                                      builder.getArrayAttr(allFormats_rhs));
+                                                                      builder.getArrayAttr(allFormats_rhs),
+                                                                      builder.getArrayAttr(allBlocks_rhs));
   comet_vdump(leafop_rhs);
   Value leafop_lhs = builder.create<indexTree::IndexTreeComputeLHSOp>(loc,
                                                                       mlir::UnrankedTensorType::get(builder.getF64Type()), t_lhs,
                                                                       builder.getArrayAttr(allIndices_lhs),
-                                                                      builder.getArrayAttr(allFormats_lhs));
+                                                                      builder.getArrayAttr(allFormats_lhs),
+                                                                      builder.getArrayAttr(allBlocks_lhs));
   bool comp_worksp_opt = false; /// non-compressed workspace, this is a place-holder and it is updated in workspace transform pass.
   llvm::StringRef semiring = expr->getSemiring();
   llvm::StringRef maskType = expr->getMaskType();

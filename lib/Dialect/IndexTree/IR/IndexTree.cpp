@@ -121,13 +121,13 @@ IndicesType Index_Tree::getIndices(mlir::Value v)
   return indices;
 }
 
-Tensor *Index_Tree::getOrCreateTensor(mlir::Value v, FormatsType &formats)
+Tensor *Index_Tree::getOrCreateTensor(mlir::Value v, FormatsType &formats, BlocksType &blocks)
 {
   IndicesType indices = getIndices(v);
   void *vp = v.getAsOpaquePointer();
   if (valueToTensor.count(vp) == 0)
   {
-    valueToTensor[vp] = std::make_unique<Tensor>(v, indices, formats);
+    valueToTensor[vp] = std::make_unique<Tensor>(v, indices, formats, blocks);
   }
   else
   {
