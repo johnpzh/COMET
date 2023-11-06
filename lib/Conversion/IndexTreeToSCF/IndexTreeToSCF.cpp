@@ -65,7 +65,7 @@ using llvm::StringRef;
 #define DEBUG_TYPE "lowering-it-to-scf"
 
 // *********** For debug purpose *********//
-#define COMET_DEBUG_MODE
+// #define COMET_DEBUG_MODE
 #include "comet/Utils/debug.h"
 #undef COMET_DEBUG_MODE
 // *********** For debug purpose *********//
@@ -1121,6 +1121,7 @@ namespace
           
           if (block != "UNK") {
             comet_debug() << "block " << block << " for format: " << format << "\n";
+            llvm::errs() << "block " << block << " for format: " << format << "\n";
           }
           
           opstree->symbolicForOps.push_back(forLoop);
@@ -1144,6 +1145,10 @@ namespace
                          accessIndex /* output */);
         opstree->forOps.push_back(forLoop);
         opstree->accessIdx.push_back(accessIndex);
+        
+        if (block != "UNK") {
+          llvm::errs() << "block " << block << " for format: " << format << "\n";
+        }
       }
       /// mix sparse dense tensor contraction, only one sparse tensor
       else if (format.compare(0, 2, "CU") == 0)
@@ -1218,12 +1223,13 @@ namespace
                           forLoop /* output */,
                           accessIndex /* output */);
         
+        opstree->forOps.push_back(forLoop);
+        opstree->accessIdx.push_back(accessIndex);
+        
         if (block != "UNK") {
           comet_debug() << "block " << block << " for format: " << format << "\n";
         }
         
-        opstree->forOps.push_back(forLoop);
-        opstree->accessIdx.push_back(accessIndex);
       }
       else if (format.compare(0, 2, "CN") == 0)
       {
@@ -1239,12 +1245,35 @@ namespace
                           forLoop /* output */,
                           accessIndex /* output */);
         
-        if (block != "UNK") {
+        if (block == "UNK") {
+          opstree->forOps.push_back(forLoop);
+          opstree->accessIdx.push_back(accessIndex);
+        } else {
           comet_debug() << "block " << block << " for format: " << format << "\n";
+          if (block == "D") {
+            comet_debug() << "    Generating block D\n";
+            
+            /// Add the parent loop
+            opstree->symbolicForOps.push_back(forLoop);
+            opstree->symbolicAccessIdx.push_back(accessIndex);
+            
+            scf::ForOp forLoop2;
+            Value accessIndex2;
+            genForOpFormat_D(builder,
+                             loc,
+                             tensor,
+                             id,
+                             i,
+                             allAllocs,
+                             forLoop2,
+                             accessIndex2);
+                             
+            comet_vdump(forLoop2);
+            
+            opstree->forOps.push_back(forLoop2);
+            opstree->accessIdx.push_back(accessIndex2);
+          }
         }
-        
-        opstree->forOps.push_back(forLoop);
-        opstree->accessIdx.push_back(accessIndex);
       }
       else if (format.compare(0, 1, "S") == 0)
       {
