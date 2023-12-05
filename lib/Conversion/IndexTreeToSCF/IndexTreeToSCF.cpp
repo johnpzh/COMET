@@ -627,6 +627,7 @@ namespace
                         Value &tensor,
                         unsigned int id,
                         unsigned int i,
+                        bool is_block,
                         std::vector<std::vector<Value>> &allAllocs,
                         scf::ForOp &forLoop /* output */,
                         Value &accessIndex /* output */)
@@ -698,12 +699,15 @@ namespace
     else if (tensor.getType().cast<tensorAlgebra::SparseTensorType>())
     {
       comet_debug() << "cur_idx is in tensor " << i << "\n";
+      
+      unsigned int alloc_pos = 4 * id;
+      if (is_block) alloc_pos += 2;
 
       Value lowerBound = builder.create<ConstantIndexOp>(loc, 0);
       auto index_0 = builder.create<ConstantIndexOp>(loc, 0);
       std::vector<Value> upper_indices = {index_0};
-      Value upperBound = builder.create<memref::LoadOp>(loc, allAllocs[i][4 * id], upper_indices);
-      comet_vdump(allAllocs[i][4 * id]);
+      Value upperBound = builder.create<memref::LoadOp>(loc, allAllocs[i][alloc_pos], upper_indices);
+      comet_vdump(allAllocs[i][alloc_pos]);
       auto step = builder.create<ConstantIndexOp>(loc, 1);
       auto loop = builder.create<scf::ForOp>(loc, lowerBound, upperBound, step);
 
@@ -1115,6 +1119,7 @@ namespace
                            tensor,
                            id,
                            i,
+                           false,
                            allAllocs,
                            forLoop /* output */,
                            accessIndex /* output */);
@@ -1135,6 +1140,7 @@ namespace
                          tensor,
                          id,
                          i,
+                         false,
                          allAllocs,
                          forLoop /* output */,
                          accessIndex /* output */);
@@ -1146,13 +1152,18 @@ namespace
           genForOpFormat_D(builder,
                            loc,
                            tensor,
-                           id + 1,
+                           id,
                            i,
+                           true,
                            allAllocs,
                            forLoop2 /* output */,
                            accessIndex2 /* output */);
           opstree->forOps.push_back(forLoop2);
           opstree->accessIdx.push_back(accessIndex2);
+          
+          // Insert the index calculations
+          // i = n1 * A1_block_pos + bi
+          
         } else if (block == "UNK") {
           opstree->forOps.push_back(forLoop);
           opstree->accessIdx.push_back(accessIndex);
@@ -1195,6 +1206,9 @@ namespace
           
           opstree->symbolicForOps.push_back(forLoop);
           opstree->symbolicAccessIdx.push_back(accessIndex);
+          
+          // Index calculations
+          // j = A2_crd[n2] * A2_block_pos + bj
 
           /// Restore the insertion point
           builder.restoreInsertionPoint(last_insertion_point);
@@ -1236,6 +1250,7 @@ namespace
                            tensor,
                            id,
                            i,
+                           true,
                            allAllocs,
                            forLoop2 /* output */,
                            accessIndex2 /* output */);
