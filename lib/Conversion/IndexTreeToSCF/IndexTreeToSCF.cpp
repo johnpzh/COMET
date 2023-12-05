@@ -1119,11 +1119,6 @@ namespace
                            forLoop /* output */,
                            accessIndex /* output */);
           
-          if (block != "UNK") {
-            comet_debug() << "block " << block << " for format: " << format << "\n";
-            llvm::errs() << "block " << block << " for format: " << format << "\n";
-          }
-          
           opstree->symbolicForOps.push_back(forLoop);
           opstree->symbolicAccessIdx.push_back(accessIndex);
 
@@ -1143,11 +1138,24 @@ namespace
                          allAllocs,
                          forLoop /* output */,
                          accessIndex /* output */);
-        opstree->forOps.push_back(forLoop);
-        opstree->accessIdx.push_back(accessIndex);
         
-        if (block != "UNK") {
-          //llvm::errs() << "block " << block << " for format: " << format << "\n";
+        if (block == "D") {
+          builder.setInsertionPoint(forLoop.getBody()->getTerminator());
+          scf::ForOp forLoop2;
+          Value accessIndex2;
+          genForOpFormat_D(builder,
+                           loc,
+                           tensor,
+                           id + 1,
+                           i,
+                           allAllocs,
+                           forLoop2 /* output */,
+                           accessIndex2 /* output */);
+          opstree->forOps.push_back(forLoop2);
+          opstree->accessIdx.push_back(accessIndex2);
+        } else if (block == "UNK") {
+          opstree->forOps.push_back(forLoop);
+          opstree->accessIdx.push_back(accessIndex);
         }
       }
       /// mix sparse dense tensor contraction, only one sparse tensor
@@ -1219,25 +1227,23 @@ namespace
                           forLoop /* output */,
                           accessIndex /* output */);
         
-        opstree->forOps.push_back(forLoop);
-        opstree->accessIdx.push_back(accessIndex);
-        
-        if (block != "UNK") {
-          //llvm::errs() << "block " << block << " for format: " << format << "\n";
-          if (block == "D") {
-            scf::ForOp forLoop2;
-            Value accessIndex2;
-            genForOpFormat_D(builder,
-                             loc,
-                             tensor,
-                             id,
-                             i,
-                             allAllocs,
-                             forLoop2 /* output */,
-                             accessIndex2 /* output */);
-            opstree->forOps.push_back(forLoop2);
-            opstree->accessIdx.push_back(accessIndex2);
-          }
+        if (block == "D") {
+          builder.setInsertionPoint(forLoop.getBody()->getTerminator());
+          scf::ForOp forLoop2;
+          Value accessIndex2;
+          genForOpFormat_D(builder,
+                           loc,
+                           tensor,
+                           id,
+                           i,
+                           allAllocs,
+                           forLoop2 /* output */,
+                           accessIndex2 /* output */);
+          opstree->forOps.push_back(forLoop2);
+          opstree->accessIdx.push_back(accessIndex2);
+        } else if (block == "UNK") {
+          opstree->forOps.push_back(forLoop);
+          opstree->accessIdx.push_back(accessIndex);
         }
         
       }
@@ -1281,10 +1287,6 @@ namespace
                          parent_forop,
                          forLoop /* output */,
                          accessIndex /* output */);
-        
-        if (block != "UNK") {
-          comet_debug() << "block " << block << " for format: " << format << "\n";
-        }
         
         opstree->forOps.push_back(forLoop);
         opstree->accessIdx.push_back(accessIndex);
