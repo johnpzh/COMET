@@ -211,6 +211,7 @@ namespace
   public:
     std::vector<scf::ForOp> forOps;         /// The (nested) for loops
     std::vector<Value> accessIdx;           /// The coordinate of accessing that dimension
+    std::vector<Value> inductionVars;
     std::vector<scf::ForOp> symbolicForOps; /// For-loops in symbolic phase (if necessary)
     std::vector<Value> symbolicAccessIdx;   /// The accessing index for that for-loop in symbolic phase (if necessary)
                                             ///  std::vector<Value> cmptOps;     /// The computation ops (no used?)
@@ -732,6 +733,7 @@ namespace
                          std::vector<std::vector<Value>> &allAllocs,
                          scf::ForOp &parent_forop,
                          Value &parent_accessIdx,
+                         Value &parent_inductionVar,
                          scf::ForOp &forLoop /* output */,
                          Value &accessIndex /* output */)
   {
@@ -780,7 +782,10 @@ namespace
           if (alloc_child_bounds == alloc_parent_bounds) /// m is the nearest loop induction variable
           {
             comet_debug() << " THESAME: Parent and Child has the same alloc\n";
-            index_lower = parent_forop.getInductionVar();
+            if (parent_inductionVar != nullptr)
+              index_lower = parent_inductionVar;
+            else
+              index_lower = parent_forop.getInductionVar();
           }
           else
           { /// m comes from the load
@@ -1159,6 +1164,7 @@ namespace
                            forLoop2 /* output */,
                            accessIndex2 /* output */);
           opstree->forOps.push_back(forLoop2);
+          opstree->inductionVars.push_back(forLoop.getInductionVar());
           builder.setInsertionPoint(forLoop2.getBody()->getTerminator());
           
           // Insert the index calculations
@@ -1173,6 +1179,7 @@ namespace
         } else if (block == "UNK") {
           opstree->forOps.push_back(forLoop);
           opstree->accessIdx.push_back(accessIndex);
+          opstree->inductionVars.push_back(forLoop.getInductionVar());
         }
       }
       /// mix sparse dense tensor contraction, only one sparse tensor
@@ -1193,6 +1200,7 @@ namespace
           Value accessIndex;
           scf::ForOp parent_forop;
           Value parent_accessIdx;
+          Value parent_inductionVar;
           if (nullptr != opstree->parent)
           {
             parent_forop = opstree->parent->symbolicForOps.back();
@@ -1207,6 +1215,7 @@ namespace
                             allAllocs,
                             parent_forop,
                             parent_accessIdx,
+                            parent_inductionVar,
                             forLoop /* output */,
                             accessIndex /* output */);
           
@@ -1227,10 +1236,12 @@ namespace
         Value accessIndex;
         scf::ForOp parent_forop;
         Value parent_accessIdx;
+        Value parent_inductionVar;
         if (nullptr != opstree->parent)
         {
           parent_forop = opstree->parent->forOps.back();
           parent_accessIdx = opstree->parent->accessIdx.back();
+          parent_inductionVar = opstree->parent->inductionVars.back();
         }
         genForOpFormat_CU(builder,
                           loc,
@@ -1241,6 +1252,7 @@ namespace
                           allAllocs,
                           parent_forop,
                           parent_accessIdx,
+                          parent_inductionVar,
                           forLoop /* output */,
                           accessIndex /* output */);
         
@@ -1258,6 +1270,7 @@ namespace
                            forLoop2 /* output */,
                            accessIndex2 /* output */);
           opstree->forOps.push_back(forLoop2);
+          opstree->inductionVars.push_back(forLoop.getInductionVar());
           
           builder.setInsertionPoint(forLoop2.getBody()->getTerminator());
           
@@ -1273,6 +1286,7 @@ namespace
         } else if (block == "UNK") {
           opstree->forOps.push_back(forLoop);
           opstree->accessIdx.push_back(accessIndex);
+          opstree->inductionVars.push_back(forLoop.getInductionVar());
         }
         
       }
@@ -1880,6 +1894,7 @@ namespace
                             std::vector<std::vector<Value>> &allAccessIdx,
                             std::vector<scf::ForOp> &forLoops /* numeric for-loop statements, from innermost to outermost*/,
                             std::vector<Value> &numeric_nested_forLoop_AccessIdx,
+                            std::vector<Value> &nested_InductionVars,
                             std::vector<scf::ForOp> &symbolic_nested_forops /* symbolic for-loops from innermost to outermost */,
                             std::vector<std::vector<int>> &rhsPerms,
                             SymbolicInfo &symbolicInfo,
@@ -2021,8 +2036,7 @@ namespace
           Value mul1 = builder.create<MulIOp>(loc, A1_block_pos, A2_block_pos);
           
           // mul2 = *n2
-          auto n2_loop = forLoops[1];
-          auto n2 = n2_loop.getInductionVar();
+          auto n2 = nested_InductionVars[1];
           Value mul2 = builder.create<MulIOp>(loc, n2, mul1);
           
           // mul3 = bi * A2_block_pos
@@ -2445,6 +2459,7 @@ namespace
                                           std::vector<OpsTree *> &ancestorsOps,
                                           std::vector<scf::ForOp> &nested_forops /* output */,
                                           std::vector<Value> &nested_AccessIdx /* output */,
+                                          std::vector<Value> &nested_InductionVars /* output */,
                                           std::vector<int64_t> &nested_forops_indices /* output */)
   {
 
@@ -2461,6 +2476,8 @@ namespace
           nested_forops.push_back(ancestorsOps[i]->forOps[j]);
           comet_debug() << "AccessIdx: " << ancestorsOps[i]->accessIdx[j] << "\n";
           nested_AccessIdx.push_back(ancestorsOps[i]->accessIdx[j]);
+          comet_debug() << "InductionVars: " << ancestorsOps[i]->inductionVars[j] << "\n";
+          nested_InductionVars.push_back(ancestorsOps[i]->inductionVars[j]);
         }
       }
     }
@@ -3803,11 +3820,13 @@ namespace
     /// 1. get the nested loops, from innermost to outermost order
     std::vector<scf::ForOp> nested_forops;
     std::vector<Value> nested_AccessIdx;
+    std::vector<Value> nested_InductionVars;
     std::vector<int64_t> nested_forops_indices; /// Each nested indexOp's index value (e.g., indices=[0])
     getNumericNestedForOpsAndAccessIdx(ancestorsWps,
                                        ancestorsOps,
                                        nested_forops /* output */,
                                        nested_AccessIdx /* output */,
+                                       nested_InductionVars /* output */,
                                        nested_forops_indices /* output */);
 
     comet_debug() << " nested_forops_indices.size(): " << nested_forops_indices.size() << "\n";
@@ -4175,6 +4194,7 @@ namespace
                            allAccessIdx,
                            nested_forops,
                            nested_AccessIdx,
+                           nested_InductionVars,
                            symbolic_nested_forops,
                            allPerms_rhs,
                            symbolicInfo,
@@ -4268,6 +4288,7 @@ namespace
                              allAccessIdx,
                              nested_forops,
                              nested_AccessIdx,
+                             nested_InductionVars,
                              symbolic_nested_forops,
                              allPerms_rhs,
                              symbolicInfo,
