@@ -1163,7 +1163,7 @@ namespace
           
           // Insert the index calculations
           // i = n1 * A1_block_pos + bi
-          Value c0 = builder.create<ConstantIndexOp>(loc, 1);
+          Value c0 = builder.create<ConstantIndexOp>(loc, 0);
           std::vector<Value> indices = {c0};
           Value column = builder.create<memref::LoadOp>(loc, allAllocs[i][2], indices);
           Value mul1 = builder.create<MulIOp>(loc, forLoop.getInductionVar(), column);
@@ -2685,6 +2685,7 @@ namespace
           }
         }
         /// Calculate for ModeGeneric style format: [CN, S, D (, ... ) ]
+        if (lastSparseIndexLoc == allPerms[i].size()) lastSparseIndexLoc -= 1;
         auto valueAccessIdx_part = allLoopsArg[i][lastSparseIndexLoc];
         if (lastSparseIndexLoc < allPerms[i].size() - 1)
         { /// There is dense index after the sparse index
