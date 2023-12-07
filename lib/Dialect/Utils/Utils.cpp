@@ -642,8 +642,8 @@ namespace mlir
         }
         else if (formats_str.compare("ELL") == 0)
         {
-          allBlocks[i].push_back("D");
           allBlocks[i].push_back("UNK");
+          allBlocks[i].push_back("D");
         }
         else if (formats_str.compare("BCSR") == 0)
         {
@@ -773,7 +773,8 @@ namespace mlir
 
       else if (format.size() == 1 && format[0].compare("ELL") == 0)
         format_ret = "ELL";
-      else if (format.size() == 2 && (format[0].compare("D") == 0 && format[1].compare("S") == 0 && block[0].compare("D") == 0))
+      else if (format.size() == 2 && (format[0].compare("D") == 0 && format[1].compare("S") == 0
+                && block[0].compare("UNK") == 0 && block[1].compare("D") == 0))
         format_ret = "ELL";
 
       else if (format.size() == 1 && format[0].compare("BCSR") == 0)
@@ -955,9 +956,9 @@ namespace mlir
         else if (formats_str.compare(0, 3, "ELL") == 0)
         { /// ELL
           dim_format.push_back(format_dense);
-          dim_format.push_back(format_dense);
-          dim_format.push_back(format_singleton);
           dim_format.push_back(format_unk);
+          dim_format.push_back(format_singleton);
+          dim_format.push_back(format_dense);
         }
         else if (formats_str.compare(0, 3, "CSB") == 0)
         { /// CSB
@@ -1111,9 +1112,9 @@ namespace mlir
         else if (formats_str.compare(0, 3, "ELL") == 0)
         { /// ELL
           dim_format.push_back(format_dense);
-          dim_format.push_back(format_dense);
-          dim_format.push_back(format_singleton);
           dim_format.push_back(format_unk);
+          dim_format.push_back(format_singleton);
+          dim_format.push_back(format_dense);
         }
         else if (formats_str.compare(0, 4, "BCSR") == 0)
         { /// BCSR

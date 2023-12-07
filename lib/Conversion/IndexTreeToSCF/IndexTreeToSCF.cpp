@@ -1059,6 +1059,11 @@ namespace
                  OpsTree *opstree,
                  SymbolicInfo &symbolicInfo)
   {
+  //for (unsigned int m = 0; m<tensors.size(); m++) {
+  //  llvm::errs() << "(gfo) Format: " << formats[m] << " | Block: "
+  //                << blocks[m] << " | IDs: " << ids[m] << "\n";
+  //}
+  //llvm::errs() << "---\n";
     comet_debug() << " genForOps indexTreeOp\n";
     comet_vdump(rootOp);
     Location loc = rootOp.getLoc();
@@ -1101,6 +1106,10 @@ namespace
       std::string format = formats[i];
       std::string block = blocks[i];
       unsigned int id = ids[i];
+      
+      //std::string next_format = "";
+      //if (i + 1 > tensors.size()) next_format = formats[i+1];
+      //llvm::errs() << "Current Format: " << format << " | Next_Format: " << next_format << "\n";
 
       comet_debug() << " current index format: " << format << "\n";
       comet_debug() << " current index block: " << block << "\n";
@@ -1310,7 +1319,6 @@ namespace
       {
         /// Currently supported formats, Singleton is not the format of first dimension
         /// and it doesn't produce a loop
-        /// Generate: int j = A2crd[m];
         scf::ForOp forLoop;
         Value accessIndex;
         std::vector<scf::ForOp> &opstree_forops = opstree->forOps;
@@ -1319,6 +1327,13 @@ namespace
         {
           parent_forop = opstree->parent->forOps.back();
         }
+        
+        /// If we have a block-dense loop, we need to generate that first
+        if (block == "D") {
+          //llvm::errs() << "S- Generate Block D\n";
+        }
+        
+        /// Generate: int j = A2crd[m];
         genForOpFormat_S(builder,
                          loc,
                          opstree,
@@ -2476,8 +2491,13 @@ namespace
           nested_forops.push_back(ancestorsOps[i]->forOps[j]);
           comet_debug() << "AccessIdx: " << ancestorsOps[i]->accessIdx[j] << "\n";
           nested_AccessIdx.push_back(ancestorsOps[i]->accessIdx[j]);
-          comet_debug() << "InductionVars: " << ancestorsOps[i]->inductionVars[j] << "\n";
-          nested_InductionVars.push_back(ancestorsOps[i]->inductionVars[j]);
+          if (ancestorsOps[i]->inductionVars.size() > j && ancestorsOps[i]->inductionVars[j]) {
+            comet_debug() << "InductionVars: " << ancestorsOps[i]->inductionVars[j] << "\n";
+            nested_InductionVars.push_back(ancestorsOps[i]->inductionVars[j]);
+          } else {
+            comet_debug() << "InductionVars: <nullptr>\n";
+            nested_InductionVars.push_back(nullptr);
+          }
         }
       }
     }
@@ -4566,12 +4586,10 @@ void LowerIndexTreeToSCFPass::doLoweringIndexTreeToSCF(indexTree::IndexTreeOp &r
       comet_debug() << "---------------\n";
       
       //debug
-      //for (auto fmt : formats) {
-      //  std::cout << "FMT: " << fmt << std::endl;
+      //for (unsigned int m = 0; m<tensors.size(); m++) {
+      //  llvm::errs() << "Format: " << formats[m] << " | Block: " << blocks[m] << " | IDs: " << ids[m] << "\n";
       //}
-      //for (auto block : blocks) {
-      //  std::cout << "BLOCK: " << block << std::endl;
-      //}
+      //llvm::errs() << "---\n";
 
       comet_debug() << " call genForOps, i = " << i << "\n";
       genForOps(tensors, ids, formats, blocks, rootOp, builder, opstree_vec[i], symbolicInfo);
