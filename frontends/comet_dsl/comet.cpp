@@ -41,6 +41,9 @@
 #include "mlir/Dialect/MemRef/Transforms/Passes.h"
 #include "mlir/Dialect/Func/Transforms/Passes.h"
 #include "mlir/Dialect/Tensor/Transforms/Passes.h"
+#include "mlir/Dialect/SCF/Transforms/Passes.h"
+#include "mlir/Dialect/Bufferization/Transforms/Passes.h"
+
 
 #include "mlir/Conversion/AffineToStandard/AffineToStandard.h"
 #include "mlir/Conversion/FuncToLLVM/ConvertFuncToLLVMPass.h"
@@ -373,10 +376,13 @@ int loadAndProcessMLIR(mlir::MLIRContext &context,
     /// If it is a transpose of sparse tensor, it lowers the code to make a runtime call to specific sorting algorithm
     optPM.addPass(mlir::comet::createLowerTensorAlgebraToSCFPass());
 
+    /// Concretize the domains of all the index variables
+    optPM.addPass(mlir::comet::createIndexTreeDomainConcretizationPass());
+
+    optPM.addPass(mlir::comet::createIndexTreeSymbolicComputePass());
+
     /// Finally lowering index tree to SCF dialect
-    optPM.addPass(mlir::comet::createLowerIndexTreeToSCFPass());
-  //   optPM.addPass(mlir::createTensorBufferizePass());
-  //   pm.addPass(mlir::func::createFuncBufferizePass()); /// Needed for func
+    // optPM.addPass(mlir::comet::createLowerIndexTreeToSCFPass());
 
   //   if (OptDenseTransposeOp) /// Optimize Dense Transpose operation
   //   {
@@ -400,53 +406,58 @@ int loadAndProcessMLIR(mlir::MLIRContext &context,
   // /// =============================================================================
   // /// Late lowering passes
   // /// =============================================================================
+  mlir::bufferization::OneShotBufferizationOptions opts;
+  opts.allowUnknownOps = true;
+  pm.addPass(mlir::bufferization::createOneShotBufferizePass(opts));
 
-  // optPM.addPass(mlir::comet::createSTCRemoveDeadOpsPass());
-  // optPM.addPass(mlir::comet::createLateLoweringPass());
-  // optPM.addPass(mlir::createCanonicalizerPass());
-  // optPM.addPass(mlir::createCSEPass());
+  mlir::OpPassManager &late_lowering_pm = pm.nest<mlir::func::FuncOp>();
+  late_lowering_pm.addPass(mlir::comet::createSTCRemoveDeadOpsPass());
+  late_lowering_pm.addPass(mlir::comet::createLateLoweringPass());
+  
+  pm.addPass(mlir::createCanonicalizerPass());
+  pm.addPass(mlir::createCSEPass());
 
   // /// =============================================================================
 
-  // if (isLoweringToLLVM || emitLLVM)
-  // {
-  //   /// Blanket-convert any remaining high-level vector ops to loops if any remain.
-  //   pm.addNestedPass<mlir::func::FuncOp>(mlir::createConvertVectorToSCFPass());
-  //   /// Blanket-convert any remaining linalg ops to loops if any remain.
-  //   pm.addNestedPass<mlir::func::FuncOp>(mlir::createConvertLinalgToLoopsPass());
-  //   /// Blanket-convert any remaining affine ops if any remain.
-  //   pm.addPass(mlir::createLowerAffinePass());
-  //   /// Convert SCF to CF (always needed).
-  //   pm.addPass(mlir::createConvertSCFToCFPass());
-  //   /// Sprinkle some cleanups.
-  //   pm.addPass(mlir::createCanonicalizerPass());
-  //   pm.addPass(mlir::createCSEPass());
-  //   /// Blanket-convert any remaining linalg ops to LLVM if any remain.
-  //   pm.addPass(mlir::createConvertLinalgToLLVMPass());
-  //   /// Convert vector to LLVM (always needed).
-  //   pm.addPass(mlir::createConvertVectorToLLVMPass());
-  //   //// Convert Math to LLVM (always needed).
-  //   pm.addNestedPass<mlir::func::FuncOp>(mlir::createConvertMathToLLVMPass());
-  //   /// Expand complicated MemRef operations before lowering them.
-  //   pm.addPass(mlir::memref::createExpandStridedMetadataPass());
-  //   /// The expansion may create affine expressions. Get rid of them.
-  //   pm.addPass(mlir::createLowerAffinePass());
-  //   /// Convert MemRef to LLVM (always needed).
-  //   pm.addPass(mlir::createFinalizeMemRefToLLVMConversionPass());
-  //   /// Convert Func to LLVM (always needed).
-  //   pm.addPass(mlir::createConvertFuncToLLVMPass());
-  //   /// Convert Index to LLVM (always needed).
-  //   pm.addPass(mlir::createConvertIndexToLLVMPass());
-  //   /// Convert remaining unrealized_casts (always needed).
-  //   pm.addPass(mlir::createReconcileUnrealizedCastsPass());
+  if (isLoweringToLLVM || emitLLVM)
+  {
+    /// Blanket-convert any remaining high-level vector ops to loops if any remain.
+    pm.addNestedPass<mlir::func::FuncOp>(mlir::createConvertVectorToSCFPass());
+    /// Blanket-convert any remaining linalg ops to loops if any remain.
+    pm.addNestedPass<mlir::func::FuncOp>(mlir::createConvertLinalgToLoopsPass());
+    /// Blanket-convert any remaining affine ops if any remain.
+    pm.addPass(mlir::createLowerAffinePass());
+    /// Convert SCF to CF (always needed).
+    pm.addPass(mlir::createConvertSCFToCFPass());
+    /// Sprinkle some cleanups.
+    pm.addPass(mlir::createCanonicalizerPass());
+    pm.addPass(mlir::createCSEPass());
+    /// Blanket-convert any remaining linalg ops to LLVM if any remain.
+    pm.addPass(mlir::createConvertLinalgToLLVMPass());
+    /// Convert vector to LLVM (always needed).
+    pm.addPass(mlir::createConvertVectorToLLVMPass());
+    //// Convert Math to LLVM (always needed).
+    pm.addNestedPass<mlir::func::FuncOp>(mlir::createConvertMathToLLVMPass());
+    /// Expand complicated MemRef operations before lowering them.
+    pm.addPass(mlir::memref::createExpandStridedMetadataPass());
+    /// The expansion may create affine expressions. Get rid of them.
+    pm.addPass(mlir::createLowerAffinePass());
+    /// Convert MemRef to LLVM (always needed).
+    pm.addPass(mlir::createFinalizeMemRefToLLVMConversionPass());
+    /// Convert Func to LLVM (always needed).
+    pm.addPass(mlir::createConvertFuncToLLVMPass());
+    /// Convert Index to LLVM (always needed).
+    pm.addPass(mlir::createConvertIndexToLLVMPass());
+    /// Convert remaining unrealized_casts (always needed).
+    pm.addPass(mlir::createReconcileUnrealizedCastsPass());
 
-  //   if (mlir::failed(pm.run(*module)))
-  //     return 4;
-  //   return 0;
-  // }
+    if (mlir::failed(pm.run(*module)))
+      return 4;
+    return 0;
+  }
 
-  // if (mlir::failed(pm.run(*module)))
-  //   return 4;
+  if (mlir::failed(pm.run(*module)))
+    return 4;
   return 0;
 }
 
@@ -487,6 +498,7 @@ int main(int argc, char **argv)
   context.loadDialect<mlir::linalg::LinalgDialect>();
   context.loadDialect<mlir::scf::SCFDialect>();
   context.loadDialect<mlir::bufferization::BufferizationDialect>();
+  context.loadDialect<mlir::index::IndexDialect>();
 
   mlir::OwningOpRef<mlir::ModuleOp> module;
 

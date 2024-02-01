@@ -379,7 +379,7 @@ def TensorElewsMultOp : TA_Op<"elews_mul", [Pure]>{
   
 }
 
-def TensorSetOp : TA_Op<"set_op", [Pure]>{
+def TensorSetOp : TA_Op<"set_op">{
 
   let summary = "";
   let description = [{
@@ -754,6 +754,19 @@ def TensorCopyOp : TA_Op<"copy", [Pure]>{
   //let hasVerifier = 1;
 }
 
+def TensorInsertOp : TA_Op<"TAInsertOp", [Pure, SameVariadicOperandSize]>{
+  let summary = "Insert intro a sparse tensor. Sparse Tensor equivalent of tensor.insert";
+  let description = [{}];
+
+  let arguments = (
+    ins TA_AnyTensor:$tensor, 
+    Variadic<Index>:$pos,
+    Variadic<Index>:$crds,
+    F64:$value
+  );
+
+  let results = (outs TA_AnyTensor);
+}
 #endif /// TA_OPS
 
 

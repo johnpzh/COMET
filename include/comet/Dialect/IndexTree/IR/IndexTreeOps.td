@@ -135,7 +135,6 @@ def IndexTreeComputeOp : IndexTree_Op<"ComputeOp", [Pure]>{
 
    //TODO(gkestor): add verifier
   //let hasVerifier = 1;
-  
 }
 
 def IndexTreeTensorDomainOp : IndexTree_Op<"DomainOp", [Pure]>{
@@ -153,7 +152,9 @@ def IndexTreeSparseDomainOp : IndexTree_Op<"SparseDomainOp", [Pure]>{
   let description = [{
   }];
 
-  let arguments = (ins 
+  let arguments = (ins
+      TA_AnyTensor:$tensor,
+      UI32Attr:$dim, 
       I32Attr:$format, 
       AnyTensor:$pos,
       AnyTensor:$crd,
@@ -219,4 +220,33 @@ def IndexTreeIndexToTensorOp : IndexTree_Op<"IndexToTensorDim", [Pure]>{
   );
 }
 
+def SymbolicComputeOp : IndexTree_Op<"SymbolicComputeOp", [Pure]>{
+  let summary = "";
+  let description = [{
+  }];
+
+  let arguments = (ins IndexTree_NodeType:$parent);
+
+  //TODO: Do we want another data type to describe this?
+  //TODO: Do we want to return a domain per dimension?
+  let results = (outs Variadic<IndexTree_DomainType>);
+
+  //let hasVerifier = 1;
+}
+
+def IndexTreeSparseTensorOp : IndexTree_Op<"IndexTreeSparseTensorOp", [Pure]>{
+  let summary = "Declare a sparse tensor from an index tree domain";
+  let description = [{}];
+
+  let arguments = (ins Variadic<IndexTree_DomainType>:$domains);
+  let results = (outs TA_AnyTensor);
+}
+
+def IndexTreeDynamicallyAllocatedTensorOp : IndexTree_Op<"IndexTreeDynamicallyAllocatedTensor", [Pure]>{
+  let summary = "Declare a tensor that allocates memory on insert";
+  let description = [{}];
+
+  let arguments = (ins I32ArrayAttr:$formats);
+  let results = (outs TA_AnyTensor);
+}
 #endif // INDEXTREE_OPS
