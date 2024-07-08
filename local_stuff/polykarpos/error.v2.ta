@@ -1,0 +1,34 @@
+def main() {
+
+  # IndexLabel Declarations
+  # IndexLabel [i] = [?];                 # dynamic index label, evaluated after file read
+  # IndexLabel [j] = [?];
+  # IndexLabel [k] = [?];
+  IndexLabel [i] = [8];                 # dynamic index label, evaluated after file read
+  IndexLabel [j] = [4];
+  IndexLabel [k] = [2];
+
+  # Tensor Declarations
+  Tensor<double> QEip([j, k], {Dense});
+  Tensor<double> A_d([i, j], {Dense});
+  Tensor<double> L([i, k], {Dense});
+  
+
+  # Tensor Readfile Operation
+  #A[i, j] = comet_read(0);          # read in a sparse matrix @SPARSE_FILE_NAME0
+  #QVip[j, k] = comet_read(1);          # read in a sparse matrix @SPARSE_FILE_NAME0
+  #QEip[j, k] = comet_read(1);
+  #A_d[i,j] = comet_read(0);
+  QEip[j, k] = 2.2;
+  A_d[i ,j] = 3.4;
+  L[i,k] = 0.0;
+  #A[i, j] = random();          # read in a sparse matrix @SPARSE_FILE_NAME0
+  #B[j, k] = random();          # read in a sparse matrix @SPARSE_FILE_NAME0
+
+  # Tensor Transpose
+  #L[i,k] = QVip[j,k] * A[i,j];
+  L[i,k] = QEip[j,k] * A_d[i,j];
+  # L[i,k] = QVip[j,k]*A[i,j]*A_t[j,i];
+  #print(L);                             # print the sparse output matrix
+
+}

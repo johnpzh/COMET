@@ -13,7 +13,7 @@ __pycache__
 lit.site.cfg.py
 
 # Local directory
-/local_stuff
+# /local_stuff
 
 # IDE
 .vscode
