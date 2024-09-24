@@ -1,0 +1,78 @@
+sh01.drive_tc.sh: line 1: ulimit: stack size: cannot modify limit: Operation not permitted
+
+Go to name bcsstk17
+Number of triangles: 1641036
+data = 
+1.64104e+06,
+data = 
+1.64104e+06,
+
+Go to name bcsstk29
+Number of triangles: 2669166
+data = 
+2.66917e+06,
+data = 
+2.66917e+06,
+
+Go to name pdb1HYS
+Number of triangles: 48319315
+data = 
+4.83193e+07,
+data = 
+4.83193e+07,
+
+Go to name rma10
+Number of triangles: 14463916
+data = 
+1.44639e+07,
+data = 
+1.44639e+07,
+
+Go to name cant
+Number of triangles: 18370150
+data = 
+1.83702e+07,
+data = 
+1.83702e+07,
+
+Go to name consph
+Number of triangles: 34125815
+data = 
+3.41258e+07,
+data = 
+3.41258e+07,
+
+Go to name pwtk
+Number of triangles: 56997681
+data = 
+5.69977e+07,
+data = 
+5.69977e+07,
+
+Go to name shipsec1
+Number of triangles: 39169652
+data = 
+3.91697e+07,
+data = 
+3.91697e+07,
+
+Go to name cop20k_A
+Number of triangles: 5822388
+data = 
+5.82239e+06,
+data = 
+5.82239e+06,
+
+Go to name scircuit
+Number of triangles: 180615
+data = 
+180615,
+data = 
+180615,
+
+Go to name mac_econ_fwd500
+Number of triangles: 298904
+data = 
+81929,
+data = 
+81929,

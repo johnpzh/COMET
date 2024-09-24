@@ -1,0 +1,2 @@
+Assertion failed: (isa<To>(Val) && "cast<Ty>() argument of incompatible type!"), function cast, file Casting.h, line 578.
+run01.take_ta.sh: line 45: 81530 Abort trap: 6           ../../build-debug/bin/comet-opt --convert-to-llvm --emit-llvm mult_spgemm_CSRxCSR_oCSR.ta.SCF.mlir

@@ -1,0 +1,2 @@
+loc("eltwise_add_dense_matrix.ta.SCF.mlir":1:1): error: custom op 'loc' is unknown (tried 'builtin.loc' as well)
+Error can't load file eltwise_add_dense_matrix.ta.SCF.mlir

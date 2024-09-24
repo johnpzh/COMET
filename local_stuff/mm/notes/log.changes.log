@@ -1,0 +1,1 @@
+1. Added to IndexTreeIndicesOp an new attribute `iterator_types` to tell if the iteration can be parallelized.
