@@ -1,0 +1,49 @@
+# MTTKRP 3D
+# A[i, r] = X[i, j, k] * C[k, r] * B[j, r]; 
+# X is sparse
+# T[i, j, r] = X[i, j, k] * C[k, r]
+# A[i, r] = T[i, j, r] * B[j, r];
+
+# --opt-fusion pass performs the redundancy-aware fusion on MTTKRP kernels
+# RUN: comet-opt --convert-ta-to-it --opt-fusion --convert-to-loops  --convert-to-llvm %s &> fusion_loops.llvm
+# RUN: export SPARSE_FILE_NAME0=%comet_integration_test_data_dir/test_rank2_small.mtx
+# RUN: mlir-cpu-runner fusion_loops.llvm -O3 -e main -entry-point-result=void -shared-libs=%comet_utility_library_dir/libcomet_runner_utils%shlibext | FileCheck %s
+
+
+def main() {
+    #IndexLabel Declarations
+    IndexLabel [i] = [?];
+    IndexLabel [j] = [?];
+    IndexLabel [k] = [?];
+    IndexLabel [r] = [4];
+    IndexLabel [h] = [4];
+
+    #Tensor Declarations
+    Tensor<double> X([i, j, k], {CSF});
+    Tensor<double> C([k, r], {Dense});
+    Tensor<double> T([i, j, r], {Dense});
+
+    Tensor<double> U([r, h], {Dense});
+
+    
+
+    #Tensor Data Initialization
+    X[i, j, k] = comet_read(0);
+    C[k, r] = 1.2;
+    T[i, j, r] = 0.0;
+    
+    U[r, h] = 1.7;
+
+    # Uncommenting below will crash
+    T[i, j, r] = X[i, j, k] * C[k, r];
+    print(X);
+    print(C);
+    print(T);
+
+    # Just for testing
+    print(U);
+}
+
+# Print the result for verification.
+# CHECK: data = 
+# CHECK-NEXT: ???
