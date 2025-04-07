@@ -1,0 +1,35 @@
+# MTTKRP 3D
+# A[i, r] = X[i, j, k] * C[k, r] * B[j, r]; 
+# X is sparse
+# T[i, j, r] = X[i, j, k] * C[k, r]
+# A[i, r] = T[i, j, r] * B[j, r];
+
+# --opt-fusion pass performs the redundancy-aware fusion on GNN kernels
+# RUN: comet-opt --convert-ta-to-it --opt-fusion --convert-to-loops  --convert-to-llvm %s &> fusion_loops.llvm
+# RUN: export SPARSE_FILE_NAME0=%comet_integration_test_data_dir/test_rank2_small.mtx
+# RUN: mlir-cpu-runner fusion_loops.llvm -O3 -e main -entry-point-result=void -shared-libs=%comet_utility_library_dir/libcomet_runner_utils%shlibext | FileCheck %s
+
+# What is T, C, B, A's format?
+# Need a new comet_read() for CSF format.
+
+def main() {
+    #IndexLabel Declarations
+    IndexLabel [i] = [?];
+    IndexLabel [j] = [?];
+    IndexLabel [k] = [?];
+    IndexLabel [r] = [4];
+
+    #Tensor Declarations
+    Tensor<double> X([i, j, k], {CSF});
+    
+
+    #Tensor Data Initialization
+    X[i, j, k] = comet_read(0);
+
+    print(X);
+    
+}
+
+# Print the result for verification.
+# CHECK: data = 
+# CHECK-NEXT: 48.96,48.96,48.96,48.96,114.24,114.24,114.24,114.24,0,0,0,0,81.6,81.6,81.6,81.6,212.16,212.16,212.16,212.16,
