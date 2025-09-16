@@ -1,0 +1,17 @@
+/// LowerIndexTreeToSCFPass
+%58:2 = scf.forall (%arg2) in (%21) shared_outs(%arg3 = %57#5, %arg4 = %57#6) -> (tensor<?xi64>, tensor<?xf64>) {
+  %65 = "ta.WorkspaceClear"(%arg1) : (!ta.workspace<f64, i64, ?>) -> !ta.workspace<f64, i64, ?>
+
+/// ConvertSymbolicDomainsPass
+%69:2 = scf.forall (%arg2) in (%21) shared_outs(%arg3 = %68#5, %arg4 = %68#6) -> (tensor<?xi64>, tensor<?xf64>) {
+  %76 = "ta.WorkspaceClear"(%arg1) : (!ta.workspace<f64, i64, ?>) -> !ta.workspace<f64, i64, ?>
+
+/// SparseTensorConversionPass
+%71:2 = scf.forall (%arg12) in (%extracted) shared_outs(%arg13 = %70#5, %arg14 = %70#6) -> (tensor<?xi64>, tensor<?xf64>) {
+  %c1_i32_65 = arith.constant 1 : i32
+  %78 = arith.addi %arg8, %c1_i32_65 : i32 /// %arg8 = mark, %78 = mark + 1
+
+/// IndexTreeInliningPass
+%70:2 = scf.forall (%arg0) in (%9) shared_outs(%arg1 = %60, %arg2 = %63) -> (tensor<?xi64>, tensor<?xf64>) {
+  %c1_i32_62 = arith.constant 1 : i32
+  %81 = arith.addi %c1_i32_55, %c1_i32_62 : i32 /// !!! %81 = mark, arg is inlined

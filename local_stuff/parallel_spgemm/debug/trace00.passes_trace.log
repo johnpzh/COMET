@@ -1,0 +1,68 @@
+typeConverter.addConversion(
+    [](tensorAlgebra::SparseTensorType type, SmallVectorImpl<Type> &types) {
+
+typeConverter.addConversion(
+    [](WorkspaceType type, SmallVectorImpl<Type> &types) {
+      Type element_type = type.getElementType();
+
+class ConvertSpTensorConstructOp
+
+    %20 = "ta.spTensor_construct"(%from_elements, %11, %15, %12, %16, %13, %17, %14, %18, %19) <{dimension_formats = [1 : i32, 0 : i32, 2 : i32, 0 : i32], tensor_rank = 2 : i32}> : (tensor<2xindex>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xf64>) -> !ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>
+
+class ConvertWorkspaceGetDimSize
+
+    %22 = "ta.SpTensorGetDimSize"(%21) <{dim = 0 : i32}> : (!ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>) -> index
+
+class ConvertSpTensorGetDimSize
+
+class ConvertSpTensorGetDimPos
+
+class ConvertSpTensorConstructOp
+    %44 = "ta.spTensor_construct"(%from_elements_40, %35, %39, %36, %40, %37, %41, %38, %42, %43) <{dimension_formats = [1 : i32, 0 : i32, 2 : i32, 0 : i32], tensor_rank = 2 : i32}> : (tensor<2xindex>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xi64>, tensor<?xf64>) -> !ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>
+
+class ConvertSpTensorGetDimPos
+
+class ConvertWorkspaceGetDimSize (SpTensorGetDimSize op)???
+
+class ConvertSpTensorGetDimSize (SpTensorGetDimSize op)
+
+class ConvertWorkspaceGetCrds (SpTensorGetCrd)
+
+class ConvertSpTensorGetCrd (SpTensorGetCrd op)
+
+class ConvertWorkspaceGetCrds (SpTensorGetCrd op)
+
+class ConvertSpTensorGetCrd
+
+class ConvertSpTensorConstructOp
+    %65 = "ta.spTensor_construct"(%from_elements_52, %inserted_50, %53#4, %57, %61, %58, %62, %59, %63, %64) <{dimension_formats = [1 : i32, 0 : i32, 2 : i32, 0 : i32], tensor_rank = 2 : i32}> : (tensor<2xindex>, tensor<?xi64>, tensor<?xi64>, tensor<0xi64>, tensor<?xi64>, tensor<0xi64>, tensor<0xi64>, tensor<0xi64>, tensor<0xi64>, tensor<?xf64>) -> !ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>
+
+class ConvertAllocWorkspaceOp
+
+class ConvertWorkspaceGetDimSize
+
+class ConvertSpTensorGetDimSize
+    %67 = "ta.SpTensorGetDimSize"(%66) <{dim = 1 : i32}> : (!ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>) -> index
+
+typeConverter.addSourceMaterialization(
+    [](OpBuilder &builder, SparseTensorType resultType, ValueRange inputs,
+        Location loc) -> std::optional<Value> {
+
+    %156 = "builtin.unrealized_conversion_cast"(%155#0, %155#1, %155#2, %155#3, %155#4, %155#5, %155#6) : (tensor<2xindex>, index, tensor<?xi64>, index, tensor<?xi64>, tensor<?xi64>, tensor<?xf64>) -> !ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>
+
+typeConverter.addSourceMaterialization(
+    [](OpBuilder &builder, WorkspaceType resultType, ValueRange inputs,
+        Location loc) -> std::optional<Value> {
+
+    %157 = "builtin.unrealized_conversion_cast"(%155#7, %155#8, %155#9, %155#10, %155#11) : (tensor<?xf64>, i32, tensor<?xi32>, index, tensor<?xi64>) -> !ta.workspace<f64, i64, ?>
+
+class ConvertIndexTreeTypes
+    comet_vdump at line 89
+
+class ConvertWorkspaceClearOp
+
+typeConverter.addSourceMaterialization(
+    [](OpBuilder &builder, SparseTensorType resultType, ValueRange inputs,
+        Location loc) -> std::optional<Value> {
+
+    %191 = "builtin.unrealized_conversion_cast"(%190#0, %190#1, %190#2, %190#3, %190#4, %190#5, %190#6) : (tensor<?xi64>, tensor<?xi64>, tensor<?xf64>, tensor<?xf64>, i32, tensor<?xi32>, index) -> !ta.sparse_tensor<f64, i64, ?x?, d, unk, cu, unk>
