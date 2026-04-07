@@ -1,0 +1,53 @@
+// -----// IR Dump After (anonymous namespace)::FuncOpLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::TensorAlgebraCheckImplicitTensorDeclPass () //----- //
+// -----// IR Dump After (anonymous namespace)::LowerTensorAlgebraToIndexTreePass () //----- //
+// -----// IR Dump After IndexTreeDomainInference (indextree-domain-inference) //----- //
+// -----// IR Dump After IndexTreeDomainConcretization (indextree-domain-concretization) //----- //
+// -----// IR Dump After (anonymous namespace)::SparseTensorDeclLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::DenseTensorDeclLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::SparseTempOutputTensorDeclLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::SparseOutputTensorDeclLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::TensorFillLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::DimOpLoweringPass () //----- //
+// -----// IR Dump After IndexTreeDomainConcretization (indextree-domain-concretization) //----- //
+// -----// IR Dump After (anonymous namespace)::LowerTensorAlgebraToSCFPass () //----- //
+// -----// IR Dump After IndexTreeSymbolicComputePass (indextree-symbolic-compute) //----- //
+// -----// IR Dump After (anonymous namespace)::LowerIndexTreeToSCFPass () //----- //
+// -----// IR Dump After TensorAlgebraWorkspaceOptimizations (ta-workspace-optimizations) //----- //
+// -----// IR Dump After ConvertSymbolicDomainsPass () //----- //
+// -----// IR Dump After SparseTensorConversionPass (convert-sparse-tensor) //----- //
+// -----// IR Dump After IndexTreeInliningPass () //----- //
+// -----// IR Dump After Canonicalizer (canonicalize) //----- //
+// -----// IR Dump After LoopInvariantCodeMotion (loop-invariant-code-motion) //----- //
+// -----// IR Dump After LoopInvariantSubsetHoisting (loop-invariant-subset-hoisting) //----- //
+// -----// IR Dump After (anonymous namespace)::BufferizeFunc () //----- //
+// -----// IR Dump After Canonicalizer (canonicalize) //----- //
+// -----// IR Dump After ConvertAffineToStandard (lower-affine) //----- //
+// -----// IR Dump After OneShotBufferize (one-shot-bufferize) //----- //
+// -----// IR Dump After (anonymous namespace)::STCRemoveDeadOpsPass () //----- //
+// -----// IR Dump After (anonymous namespace)::STCRemoveDeadOpsPass () //----- //
+// -----// IR Dump After (anonymous namespace)::LateLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::LateLoweringPass () //----- //
+// -----// IR Dump After (anonymous namespace)::STCRemoveDeadOpsPass () //----- //
+// -----// IR Dump After (anonymous namespace)::LateLoweringPass () //----- //
+// -----// IR Dump After Canonicalizer (canonicalize) //----- //
+// -----// IR Dump After CSE (cse) //----- //
+// -----// IR Dump After FoldMemRefAliasOps (fold-memref-alias-ops) //----- //
+// -----// IR Dump After Canonicalizer (canonicalize) //----- //
+// -----// IR Dump After ConvertVectorToSCF (convert-vector-to-scf) //----- //
+// -----// IR Dump After ConvertVectorToSCF (convert-vector-to-scf) //----- //
+// -----// IR Dump After ConvertVectorToSCF (convert-vector-to-scf) //----- //
+// -----// IR Dump After ConvertLinalgToLoopsPass (convert-linalg-to-loops) //----- //
+// -----// IR Dump After ConvertVectorToSCF (convert-vector-to-scf) //----- //
+// -----// IR Dump After ConvertLinalgToLoopsPass (convert-linalg-to-loops) //----- //
+// -----// IR Dump After ConvertLinalgToLoopsPass (convert-linalg-to-loops) //----- //
+// -----// IR Dump After ConvertLinalgToLoopsPass (convert-linalg-to-loops) //----- //
+// -----// IR Dump After ConvertVectorToSCF (convert-vector-to-scf) //----- //
+// -----// IR Dump After ConvertLinalgToLoopsPass (convert-linalg-to-loops) //----- //
+// -----// IR Dump After ConvertVectorToSCF (convert-vector-to-scf) //----- //
+// -----// IR Dump After ConvertLinalgToLoopsPass (convert-linalg-to-loops) //----- //
+// -----// IR Dump After ConvertAffineToStandard (lower-affine) //----- //
+// -----// IR Dump After SCFForallToParallelLoop (scf-forall-to-parallel) //----- //
+// -----// IR Dump After LoopInvariantCodeMotion (loop-invariant-code-motion) //----- //
+// -----// IR Dump After Canonicalizer (canonicalize) //----- //
+// -----// IR Dump After Canonicalizer (canonicalize) //----- //

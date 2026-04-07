@@ -1,0 +1,129 @@
+
+module {
+func.func @pp_index(%val: index) {
+  %val_cast = arith.index_cast %val : index to i64
+  func.call @printI64(%val_cast) : (i64) -> ()
+  func.call @printComma() : () -> ()
+
+  return
+}
+
+func.func @main() {
+  %c0 = arith.constant 0 : index
+  %c1 = arith.constant 1 : index
+  %c2 = arith.constant 2 : index
+  %c17 = arith.constant 17 : index
+  %cst0 = arith.constant 0.0 : f64
+  %cst1 = arith.constant 1.1 : f64
+  %cst2 = arith.constant 2.2 : f64
+  %cst17 = arith.constant 17.0 : f64
+  %char0 = arith.constant 0 : i8
+  %char1 = arith.constant 1 : i8
+  %char17 = arith.constant 17 : i8
+
+  %A1 = arith.constant 8192 : index
+  %A2 = arith.constant 8192 : index
+  %B1 = arith.constant 8192 : index
+  %B2 = arith.constant 8192 : index
+  %C1 = arith.constant 8192 : index
+  %C2 = arith.constant 8192 : index
+  %A_size = arith.muli %A1, %A2 : index
+  %B_size = arith.muli %B1, %B2 : index
+  %C_size = arith.muli %C1, %C2 : index
+  %A1_tile = arith.constant 128 : index
+  %A2_tile = arith.constant 128 : index
+  %B1_tile = arith.constant 128 : index
+  %B2_tile = arith.constant 128 : index
+  %A_tile_size = arith.muli %A1_tile, %A2_tile : index
+  %B_tile_size = arith.muli %B1_tile, %B2_tile : index
+
+
+
+  %A_matrix = memref.alloc() {allocator = "rapid"} : memref<8192x8192xf64>
+  %B_matrix = memref.alloc() {allocator = "rapid"} : memref<8192x8192xf64>
+  %C_matrix = memref.alloc() {allocator = "rapid"} : memref<8192x8192xf64>
+  // %A_matrix = memref.alloc() : memref<8192x8192xf64>
+  // %B_matrix = memref.alloc() : memref<8192x8192xf64>
+  // %C_matrix = memref.alloc() : memref<8192x8192xf64>
+  scf.for %i = %c0 to %A1 step %c1 {
+    scf.for %j = %c0 to %A2 step %c1 {
+      memref.store %cst1, %A_matrix[%i, %j] : memref<8192x8192xf64>
+    }
+  }
+  scf.for %i = %c0 to %B1 step %c1 {
+    scf.for %j = %c0 to %B2 step %c1 {
+      memref.store %cst2, %B_matrix[%i, %j] : memref<8192x8192xf64>
+    }
+  }
+  scf.for %i = %c0 to %C1 step %c1 {
+    scf.for %j = %c0 to %C2 step %c1 {
+      memref.store %cst0, %C_matrix[%i, %j] : memref<8192x8192xf64>
+    }
+  }
+
+  %0 = call @getTime() : () -> f64
+
+  scf.for %ii = %c0 to %A1 step %A1_tile {
+    %A1_plus_tile = arith.addi %ii, %A1_tile : index
+    %i_bound = arith.minui %A1_plus_tile, %A1 : index
+    scf.for %kk = %c0 to %A2 step %A2_tile {
+      %A2_plus_tile = arith.addi %kk, %A2_tile : index
+      %k_bound = arith.minui %A2_plus_tile, %A2 : index
+      scf.for %jj = %c0 to %B2 step %B2_tile {
+        %B2_plus_tile = arith.addi %jj, %B2_tile : index
+        %j_bound = arith.minui %B2_plus_tile, %B2 : index
+
+        /// Tile
+        scf.for %i = %ii to %i_bound step %c1 {
+          scf.for %k = %kk to %k_bound step %c1 {
+            %A_val = memref.load %A_matrix[%i, %k] : memref<8192x8192xf64>
+            scf.for %j = %jj to %j_bound step %c1 {
+              %B_val = memref.load %B_matrix[%k, %j] : memref<8192x8192xf64>
+              %mul_res = arith.mulf %A_val, %B_val : f64
+              %old_val = memref.load %C_matrix[%i, %j] : memref<8192x8192xf64>
+              %new_val = arith.addf %old_val, %mul_res : f64
+              memref.store %new_val, %C_matrix[%i, %j] : memref<8192x8192xf64>
+            }
+          }
+        }
+      }
+    }
+  }
+
+  %1 = call @getTime() : () -> f64
+
+  // %C_cast = memref.cast %C_matrix : memref<8192x8192xf64> to memref<*xf64>
+  // func.call @comet_print_matrix_f64(%C_cast, %A1, %B2) : (memref<*xf64>, index, index) -> ()
+
+  %sum = memref.alloc() : memref<1xf64>
+  memref.store %cst0, %sum[%c0] : memref<1xf64>
+  scf.for %i = %c0 to %C1 step %c1 {
+    scf.for %j = %c0 to %C2 step %c1 {
+      %C_val = memref.load %C_matrix[%i, %j] : memref<8192x8192xf64>
+      %old_val = memref.load %sum[%c0] : memref<1xf64>
+      %new_val = arith.addf %old_val, %C_val : f64
+      memref.store %new_val, %sum[%c0] : memref<1xf64>
+    }
+  }
+  %sum_val = memref.load %sum[%c0] : memref<1xf64>
+  func.call @printF64(%sum_val) : (f64) -> ()
+  func.call @printNewline() : () -> ()
+
+
+  call @printElapsedTime(%0, %1) : (f64, f64) -> ()
+
+  // memref.dealloc %A_matrix : memref<8192x8192xf64>
+  // memref.dealloc %B_matrix : memref<8192x8192xf64>
+  // memref.dealloc %C_matrix : memref<8192x8192xf64>
+
+  return
+}
+
+func.func private @comet_print_matrix_f64(memref<*xf64>, index, index)
+func.func private @getTime() -> f64
+func.func private @printElapsedTime(f64, f64)
+func.func private @printI64(i64)
+func.func private @printF64(f64)
+func.func private @printComma()
+func.func private @printNewline()
+}

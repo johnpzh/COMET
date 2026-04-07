@@ -1,0 +1,3518 @@
+  branch-instructions OR branches                    [Hardware event]
+  branch-misses                                      [Hardware event]
+  bus-cycles                                         [Hardware event]
+  cache-misses                                       [Hardware event]
+  cache-references                                   [Hardware event]
+  cpu-cycles OR cycles                               [Hardware event]
+  instructions                                       [Hardware event]
+  ref-cycles                                         [Hardware event]
+  alignment-faults                                   [Software event]
+  bpf-output                                         [Software event]
+  cgroup-switches                                    [Software event]
+  context-switches OR cs                             [Software event]
+  cpu-clock                                          [Software event]
+  cpu-migrations OR migrations                       [Software event]
+  dummy                                              [Software event]
+  emulation-faults                                   [Software event]
+  major-faults                                       [Software event]
+  minor-faults                                       [Software event]
+  page-faults OR faults                              [Software event]
+  task-clock                                         [Software event]
+  duration_time                                      [Tool event]
+  user_time                                          [Tool event]
+  system_time                                        [Tool event]
+  L1-dcache-load-misses                              [Hardware cache event]
+  L1-dcache-loads                                    [Hardware cache event]
+  L1-dcache-stores                                   [Hardware cache event]
+  L1-icache-load-misses                              [Hardware cache event]
+  LLC-load-misses                                    [Hardware cache event]
+  LLC-loads                                          [Hardware cache event]
+  LLC-store-misses                                   [Hardware cache event]
+  LLC-stores                                         [Hardware cache event]
+  branch-load-misses                                 [Hardware cache event]
+  branch-loads                                       [Hardware cache event]
+  dTLB-load-misses                                   [Hardware cache event]
+  dTLB-loads                                         [Hardware cache event]
+  dTLB-store-misses                                  [Hardware cache event]
+  dTLB-stores                                        [Hardware cache event]
+  iTLB-load-misses                                   [Hardware cache event]
+  node-load-misses                                   [Hardware cache event]
+  node-loads                                         [Hardware cache event]
+  branch-instructions OR cpu/branch-instructions/    [Kernel PMU event]
+  branch-misses OR cpu/branch-misses/                [Kernel PMU event]
+  bus-cycles OR cpu/bus-cycles/                      [Kernel PMU event]
+  cache-misses OR cpu/cache-misses/                  [Kernel PMU event]
+  cache-references OR cpu/cache-references/          [Kernel PMU event]
+  cpu-cycles OR cpu/cpu-cycles/                      [Kernel PMU event]
+  instructions OR cpu/instructions/                  [Kernel PMU event]
+  mem-loads OR cpu/mem-loads/                        [Kernel PMU event]
+  mem-loads-aux OR cpu/mem-loads-aux/                [Kernel PMU event]
+  mem-stores OR cpu/mem-stores/                      [Kernel PMU event]
+  ref-cycles OR cpu/ref-cycles/                      [Kernel PMU event]
+  slots OR cpu/slots/                                [Kernel PMU event]
+  topdown-bad-spec OR cpu/topdown-bad-spec/          [Kernel PMU event]
+  topdown-be-bound OR cpu/topdown-be-bound/          [Kernel PMU event]
+  topdown-br-mispredict OR cpu/topdown-br-mispredict/[Kernel PMU event]
+  topdown-fe-bound OR cpu/topdown-fe-bound/          [Kernel PMU event]
+  topdown-fetch-lat OR cpu/topdown-fetch-lat/        [Kernel PMU event]
+  topdown-heavy-ops OR cpu/topdown-heavy-ops/        [Kernel PMU event]
+  topdown-mem-bound OR cpu/topdown-mem-bound/        [Kernel PMU event]
+  topdown-retiring OR cpu/topdown-retiring/          [Kernel PMU event]
+  cstate_core/c1-residency/                          [Kernel PMU event]
+  cstate_core/c6-residency/                          [Kernel PMU event]
+  cstate_pkg/c2-residency/                           [Kernel PMU event]
+  cstate_pkg/c6-residency/                           [Kernel PMU event]
+  intel_bts//                                        [Kernel PMU event]
+  intel_pt//                                         [Kernel PMU event]
+  msr/aperf/                                         [Kernel PMU event]
+  msr/cpu_thermal_margin/                            [Kernel PMU event]
+  msr/mperf/                                         [Kernel PMU event]
+  msr/smi/                                           [Kernel PMU event]
+  msr/tsc/                                           [Kernel PMU event]
+  power/energy-pkg/                                  [Kernel PMU event]
+  power/energy-psys/                                 [Kernel PMU event]
+  power/energy-ram/                                  [Kernel PMU event]
+
+cache:
+  l1d.hwpf_miss
+       [L1D.HWPF_MISS]
+  l1d.replacement
+       [Counts the number of cache lines replaced in L1 data cache]
+  l1d_pend_miss.fb_full
+       [Number of cycles a demand request has waited due to L1D Fill Buffer
+        (FB) unavailability]
+  l1d_pend_miss.fb_full_periods
+       [Number of phases a demand request has waited due to L1D Fill Buffer
+        (FB) unavailability]
+  l1d_pend_miss.l2_stalls
+       [Number of cycles a demand request has waited due to L1D due to lack of
+        L2 resources]
+  l1d_pend_miss.pending
+       [Number of L1D misses that are outstanding]
+  l1d_pend_miss.pending_cycles
+       [Cycles with L1D load Misses outstanding]
+  l2_lines_in.all
+       [L2 cache lines filling L2]
+  l2_lines_out.non_silent
+       [L2_LINES_OUT.NON_SILENT]
+  l2_lines_out.silent
+       [Non-modified cache lines that are silently dropped by L2 cache when
+        triggered by an L2 cache fill]
+  l2_lines_out.useless_hwpf
+       [Cache lines that have been L2 hardware prefetched but not used by
+        demand accesses]
+  l2_request.all
+       [All accesses to L2 cache[This event is alias to L2_RQSTS.REFERENCES]]
+  l2_request.miss
+       [Read requests with true-miss in L2 cache.[This event is alias to
+        L2_RQSTS.MISS]]
+  l2_rqsts.all_code_rd
+       [L2 code requests]
+  l2_rqsts.all_demand_data_rd
+       [Demand Data Read access L2 cache]
+  l2_rqsts.all_demand_miss
+       [Demand requests that miss L2 cache]
+  l2_rqsts.all_demand_references
+       [Demand requests to L2 cache]
+  l2_rqsts.all_hwpf
+       [L2_RQSTS.ALL_HWPF]
+  l2_rqsts.all_rfo
+       [RFO requests to L2 cache]
+  l2_rqsts.code_rd_hit
+       [L2 cache hits when fetching instructions, code reads]
+  l2_rqsts.code_rd_miss
+       [L2 cache misses when fetching instructions]
+  l2_rqsts.demand_data_rd_hit
+       [Demand Data Read requests that hit L2 cache]
+  l2_rqsts.demand_data_rd_miss
+       [Demand Data Read miss L2 cache]
+  l2_rqsts.hwpf_miss
+       [L2_RQSTS.HWPF_MISS]
+  l2_rqsts.miss
+       [Read requests with true-miss in L2 cache.[This event is alias to
+        L2_REQUEST.MISS]]
+  l2_rqsts.references
+       [All accesses to L2 cache[This event is alias to L2_REQUEST.ALL]]
+  l2_rqsts.rfo_hit
+       [RFO requests that hit L2 cache]
+  l2_rqsts.rfo_miss
+       [RFO requests that miss L2 cache]
+  l2_rqsts.swpf_hit
+       [SW prefetch requests that hit L2 cache]
+  l2_rqsts.swpf_miss
+       [SW prefetch requests that miss L2 cache]
+  longest_lat_cache.miss
+       [Core-originated cacheable requests that missed L3 (Except hardware
+        prefetches to the L3)]
+  longest_lat_cache.reference
+       [Core-originated cacheable requests that refer to L3 (Except hardware
+        prefetches to the L3)]
+  mem_inst_retired.all_loads
+       [Retired load instructions Supports address when precise (Precise
+        event)]
+  mem_inst_retired.all_stores
+       [Retired store instructions Supports address when precise (Precise
+        event)]
+  mem_inst_retired.any
+       [All retired memory instructions Supports address when precise (Precise
+        event)]
+  mem_inst_retired.lock_loads
+       [Retired load instructions with locked access Supports address when
+        precise (Precise event)]
+  mem_inst_retired.split_loads
+       [Retired load instructions that split across a cacheline boundary
+        Supports address when precise (Precise event)]
+  mem_inst_retired.split_stores
+       [Retired store instructions that split across a cacheline boundary
+        Supports address when precise (Precise event)]
+  mem_inst_retired.stlb_miss_loads
+       [Retired load instructions that miss the STLB Supports address when
+        precise (Precise event)]
+  mem_inst_retired.stlb_miss_stores
+       [Retired store instructions that miss the STLB Supports address when
+        precise (Precise event)]
+  mem_load_completed.l1_miss_any
+       [Completed demand load uops that miss the L1 d-cache]
+  mem_load_l3_hit_retired.xsnp_fwd
+       [Retired load instructions whose data sources were HitM responses from
+        shared L3 Supports address when precise (Precise event)]
+  mem_load_l3_hit_retired.xsnp_miss
+       [Retired load instructions whose data sources were L3 hit and
+        cross-core snoop missed in on-pkg core cache Supports address when
+        precise (Precise event)]
+  mem_load_l3_hit_retired.xsnp_no_fwd
+       [Retired load instructions whose data sources were L3 and cross-core
+        snoop hits in on-pkg core cache Supports address when precise (Precise
+        event)]
+  mem_load_l3_hit_retired.xsnp_none
+       [Retired load instructions whose data sources were hits in L3 without
+        snoops required Supports address when precise (Precise event)]
+  mem_load_l3_miss_retired.local_dram
+       [Retired load instructions which data sources missed L3 but serviced
+        from local dram Supports address when precise (Precise event)]
+  mem_load_l3_miss_retired.remote_dram
+       [MEM_LOAD_L3_MISS_RETIRED.REMOTE_DRAM Supports address when precise
+        (Precise event)]
+  mem_load_l3_miss_retired.remote_fwd
+       [Retired load instructions whose data sources was forwarded from a
+        remote cache Supports address when precise (Precise event)]
+  mem_load_l3_miss_retired.remote_hitm
+       [MEM_LOAD_L3_MISS_RETIRED.REMOTE_HITM Supports address when precise
+        (Precise event)]
+  mem_load_l3_miss_retired.remote_pmm
+       [Retired load instructions with remote Intel(R) Optane(TM) DC
+        persistent memory as the data source where the data request missed all
+        caches]
+  mem_load_misc_retired.uc
+       [Retired instructions with at least 1 uncacheable load or lock Supports
+        address when precise (Precise event)]
+  mem_load_retired.fb_hit
+       [Number of completed demand load requests that missed the L1, but hit
+        the FB(fill buffer), because a preceding miss to the same cacheline
+        initiated the line to be brought into L1, but data is not yet ready in
+        L1 Supports address when precise (Precise event)]
+  mem_load_retired.l1_hit
+       [Retired load instructions with L1 cache hits as data sources Supports
+        address when precise (Precise event)]
+  mem_load_retired.l1_miss
+       [Retired load instructions missed L1 cache as data sources Supports
+        address when precise (Precise event)]
+  mem_load_retired.l2_hit
+       [Retired load instructions with L2 cache hits as data sources Supports
+        address when precise (Precise event)]
+  mem_load_retired.l2_miss
+       [Retired load instructions missed L2 cache as data sources Supports
+        address when precise (Precise event)]
+  mem_load_retired.l3_hit
+       [Retired load instructions with L3 cache hits as data sources Supports
+        address when precise (Precise event)]
+  mem_load_retired.l3_miss
+       [Retired load instructions missed L3 cache as data sources Supports
+        address when precise (Precise event)]
+  mem_load_retired.local_pmm
+       [Retired load instructions with local Intel(R) Optane(TM) DC persistent
+        memory as the data source where the data request missed all caches
+        Supports address when precise (Precise event)]
+  mem_store_retired.l2_hit
+       [MEM_STORE_RETIRED.L2_HIT]
+  mem_uop_retired.any
+       [Retired memory uops for any access]
+  ocr.demand_code_rd.l3_hit
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that hit in the L3 or were snooped from another core's caches on the
+        same socket]
+  ocr.demand_code_rd.l3_hit.snoop_hitm
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that resulted in a snoop hit a modified line in another core's caches
+        which forwarded the data]
+  ocr.demand_code_rd.snc_cache.hit_with_fwd
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that either hit a non-modified line in a distant L3 Cache or were
+        snooped from a distant core's L1/L2 caches on this socket when the
+        system is in SNC (sub-NUMA cluster) mode]
+  ocr.demand_code_rd.snc_cache.hitm
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that hit a modified line in a distant L3 Cache or were snooped from a
+        distant core's L1/L2 caches on this socket when the system is in SNC
+        (sub-NUMA cluster) mode]
+  ocr.demand_data_rd.l3_hit
+       [Counts demand data reads that hit in the L3 or were snooped from
+        another core's caches on the same socket]
+  ocr.demand_data_rd.l3_hit.snoop_hit_no_fwd
+       [Counts demand data reads that resulted in a snoop that hit in another
+        core, which did not forward the data]
+  ocr.demand_data_rd.l3_hit.snoop_hit_with_fwd
+       [Counts demand data reads that resulted in a snoop hit in another
+        core's caches which forwarded the unmodified data to the requesting
+        core]
+  ocr.demand_data_rd.l3_hit.snoop_hitm
+       [Counts demand data reads that resulted in a snoop hit a modified line
+        in another core's caches which forwarded the data]
+  ocr.demand_data_rd.remote_cache.snoop_hit_with_fwd
+       [Counts demand data reads that were supplied by a cache on a remote
+        socket where a snoop hit in another core's caches which forwarded the
+        unmodified data to the requesting core]
+  ocr.demand_data_rd.remote_cache.snoop_hitm
+       [Counts demand data reads that were supplied by a cache on a remote
+        socket where a snoop hit a modified line in another core's caches
+        which forwarded the data]
+  ocr.demand_data_rd.snc_cache.hit_with_fwd
+       [Counts demand data reads that either hit a non-modified line in a
+        distant L3 Cache or were snooped from a distant core's L1/L2 caches on
+        this socket when the system is in SNC (sub-NUMA cluster) mode]
+  ocr.demand_data_rd.snc_cache.hitm
+       [Counts demand data reads that hit a modified line in a distant L3
+        Cache or were snooped from a distant core's L1/L2 caches on this
+        socket when the system is in SNC (sub-NUMA cluster) mode]
+  ocr.demand_rfo.l3_hit
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that hit in the L3 or
+        were snooped from another core's caches on the same socket]
+  ocr.demand_rfo.l3_hit.snoop_hitm
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that resulted in a
+        snoop hit a modified line in another core's caches which forwarded the
+        data]
+  ocr.demand_rfo.snc_cache.hit_with_fwd
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that either hit a
+        non-modified line in a distant L3 Cache or were snooped from a distant
+        core's L1/L2 caches on this socket when the system is in SNC (sub-NUMA
+        cluster) mode]
+  ocr.demand_rfo.snc_cache.hitm
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that hit a modified
+        line in a distant L3 Cache or were snooped from a distant core's L1/L2
+        caches on this socket when the system is in SNC (sub-NUMA cluster)
+        mode]
+  ocr.hwpf_l3.l3_hit
+       [Counts hardware prefetches to the L3 only that hit in the L3 or were
+        snooped from another core's caches on the same socket]
+  ocr.reads_to_core.l3_hit
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that hit in the
+        L3 or were snooped from another core's caches on the same socket]
+  ocr.reads_to_core.l3_hit.snoop_hit_no_fwd
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that resulted in
+        a snoop that hit in another core, which did not forward the data]
+  ocr.reads_to_core.l3_hit.snoop_hit_with_fwd
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that resulted in
+        a snoop hit in another core's caches which forwarded the unmodified
+        data to the requesting core]
+  ocr.reads_to_core.l3_hit.snoop_hitm
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that resulted in
+        a snoop hit a modified line in another core's caches which forwarded
+        the data]
+  ocr.reads_to_core.remote_cache.snoop_fwd
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by a cache on a remote socket where a snoop was sent and data
+        was returned (Modified or Not Modified)]
+  ocr.reads_to_core.remote_cache.snoop_hit_with_fwd
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by a cache on a remote socket where a snoop hit in another
+        core's caches which forwarded the unmodified data to the requesting
+        core]
+  ocr.reads_to_core.remote_cache.snoop_hitm
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by a cache on a remote socket where a snoop hit a modified
+        line in another core's caches which forwarded the data]
+  ocr.reads_to_core.snc_cache.hit_with_fwd
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that either hit a
+        non-modified line in a distant L3 Cache or were snooped from a distant
+        core's L1/L2 caches on this socket when the system is in SNC (sub-NUMA
+        cluster) mode]
+  ocr.reads_to_core.snc_cache.hitm
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that hit a
+        modified line in a distant L3 Cache or were snooped from a distant
+        core's L1/L2 caches on this socket when the system is in SNC (sub-NUMA
+        cluster) mode]
+  ocr.rfo_to_core.l3_hit_m
+       [Counts demand reads for ownership (RFO), hardware prefetch RFOs (which
+        bring data to L2), and software prefetches for exclusive ownership
+        (PREFETCHW) that hit to a (M)odified cacheline in the L3 or snoop
+        filter]
+  ocr.streaming_wr.l3_hit
+       [Counts streaming stores that hit in the L3 or were snooped from
+        another core's caches on the same socket]
+  offcore_requests.all_requests
+       [OFFCORE_REQUESTS.ALL_REQUESTS]
+  offcore_requests.data_rd
+       [Demand and prefetch data reads]
+  offcore_requests.demand_data_rd
+       [Demand Data Read requests sent to uncore]
+  offcore_requests_outstanding.cycles_with_data_rd
+       [OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DATA_RD]
+  offcore_requests_outstanding.cycles_with_demand_data_rd
+       [Cycles where at least 1 outstanding demand data read request is
+        pending]
+  offcore_requests_outstanding.cycles_with_demand_rfo
+       [OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DEMAND_RFO]
+  offcore_requests_outstanding.data_rd
+       [OFFCORE_REQUESTS_OUTSTANDING.DATA_RD]
+  offcore_requests_outstanding.demand_data_rd
+       [For every cycle, increments by the number of outstanding demand data
+        read requests pending]
+  sw_prefetch_access.nta
+       [Number of PREFETCHNTA instructions executed]
+  sw_prefetch_access.prefetchw
+       [Number of PREFETCHW instructions executed]
+  sw_prefetch_access.t0
+       [Number of PREFETCHT0 instructions executed]
+  sw_prefetch_access.t1_t2
+       [Number of PREFETCHT1 or PREFETCHT2 instructions executed]
+
+floating point:
+  arith.fpdiv_active
+       [ARITH.FPDIV_ACTIVE]
+  assists.fp
+       [Counts all microcode FP assists]
+  assists.sse_avx_mix
+       [ASSISTS.SSE_AVX_MIX]
+  fp_arith_dispatched.port_0
+       [FP_ARITH_DISPATCHED.PORT_0]
+  fp_arith_dispatched.port_1
+       [FP_ARITH_DISPATCHED.PORT_1]
+  fp_arith_dispatched.port_5
+       [FP_ARITH_DISPATCHED.PORT_5]
+  fp_arith_inst_retired.128b_packed_double
+       [Counts number of SSE/AVX computational 128-bit packed double precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 2 computation operations,
+        one for each element. Applies to SSE* and AVX* packed double precision
+        floating-point instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX
+        SQRT DPP FM(N)ADD/SUB. DPP and FM(N)ADD/SUB instructions count twice
+        as they perform 2 calculations per element]
+  fp_arith_inst_retired.128b_packed_single
+       [Number of SSE/AVX computational 128-bit packed single precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 4 computation operations,
+        one for each element. Applies to SSE* and AVX* packed single precision
+        floating-point instructions: ADD SUB MUL DIV MIN MAX RCP14 RSQRT14
+        SQRT DPP FM(N)ADD/SUB. DPP and FM(N)ADD/SUB instructions count twice
+        as they perform 2 calculations per element]
+  fp_arith_inst_retired.256b_packed_double
+       [Counts number of SSE/AVX computational 256-bit packed double precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 4 computation operations,
+        one for each element. Applies to SSE* and AVX* packed double precision
+        floating-point instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX
+        SQRT FM(N)ADD/SUB. FM(N)ADD/SUB instructions count twice as they
+        perform 2 calculations per element]
+  fp_arith_inst_retired.256b_packed_single
+       [Counts number of SSE/AVX computational 256-bit packed single precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 8 computation operations,
+        one for each element. Applies to SSE* and AVX* packed single precision
+        floating-point instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX
+        SQRT RSQRT RCP DPP FM(N)ADD/SUB. DPP and FM(N)ADD/SUB instructions
+        count twice as they perform 2 calculations per element]
+  fp_arith_inst_retired.512b_packed_double
+       [Counts number of SSE/AVX computational 512-bit packed double precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 8 computation operations,
+        one for each element. Applies to SSE* and AVX* packed double precision
+        floating-point instructions: ADD SUB MUL DIV MIN MAX SQRT RSQRT14
+        RCP14 FM(N)ADD/SUB. FM(N)ADD/SUB instructions count twice as they
+        perform 2 calculations per element]
+  fp_arith_inst_retired.512b_packed_single
+       [Counts number of SSE/AVX computational 512-bit packed single precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 16 computation operations,
+        one for each element. Applies to SSE* and AVX* packed single precision
+        floating-point instructions: ADD SUB MUL DIV MIN MAX SQRT RSQRT14
+        RCP14 FM(N)ADD/SUB. FM(N)ADD/SUB instructions count twice as they
+        perform 2 calculations per element]
+  fp_arith_inst_retired.scalar_double
+       [Counts number of SSE/AVX computational scalar double precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 1 computational operation.
+        Applies to SSE* and AVX* scalar double precision floating-point
+        instructions: ADD SUB MUL DIV MIN MAX SQRT FM(N)ADD/SUB. FM(N)ADD/SUB
+        instructions count twice as they perform 2 calculations per element]
+  fp_arith_inst_retired.scalar_single
+       [Counts number of SSE/AVX computational scalar single precision
+        floating-point instructions retired; some instructions will count
+        twice as noted below. Each count represents 1 computational operation.
+        Applies to SSE* and AVX* scalar single precision floating-point
+        instructions: ADD SUB MUL DIV MIN MAX SQRT RSQRT RCP FM(N)ADD/SUB.
+        FM(N)ADD/SUB instructions count twice as they perform 2 calculations
+        per element]
+  fp_arith_inst_retired2.128b_packed_half
+       [FP_ARITH_INST_RETIRED2.128B_PACKED_HALF]
+  fp_arith_inst_retired2.256b_packed_half
+       [FP_ARITH_INST_RETIRED2.256B_PACKED_HALF]
+  fp_arith_inst_retired2.512b_packed_half
+       [FP_ARITH_INST_RETIRED2.512B_PACKED_HALF]
+  fp_arith_inst_retired2.complex_scalar_half
+       [FP_ARITH_INST_RETIRED2.COMPLEX_SCALAR_HALF]
+  fp_arith_inst_retired2.scalar
+       [Number of all Scalar Half-Precision FP arithmetic instructions(1)
+        retired - regular and complex]
+  fp_arith_inst_retired2.scalar_half
+       [FP_ARITH_INST_RETIRED2.SCALAR_HALF]
+  fp_arith_inst_retired2.vector
+       [Number of all Vector (also called packed) Half-Precision FP arithmetic
+        instructions(1) retired]
+
+frontend:
+  decode.lcp
+       [Stalls caused by changing prefix length of the instruction]
+  decode.ms_busy
+       [Cycles the Microcode Sequencer is busy]
+  dsb2mite_switches.penalty_cycles
+       [DSB-to-MITE switch true penalty cycles]
+  frontend_retired.any_dsb_miss
+       [Retired Instructions who experienced DSB miss (Precise event)]
+  frontend_retired.dsb_miss
+       [Retired Instructions who experienced a critical DSB miss (Precise
+        event)]
+  frontend_retired.itlb_miss
+       [Retired Instructions who experienced iTLB true miss (Precise event)]
+  frontend_retired.l1i_miss
+       [Retired Instructions who experienced Instruction L1 Cache true miss
+        (Precise event)]
+  frontend_retired.l2_miss
+       [Retired Instructions who experienced Instruction L2 Cache true miss
+        (Precise event)]
+  frontend_retired.latency_ge_1
+       [Retired instructions after front-end starvation of at least 1 cycle
+        (Precise event)]
+  frontend_retired.latency_ge_128
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 128 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_16
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 16 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_2
+       [Retired instructions after front-end starvation of at least 2 cycles
+        (Precise event)]
+  frontend_retired.latency_ge_256
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 256 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_2_bubbles_ge_1
+       [Retired instructions that are fetched after an interval where the
+        front-end had at least 1 bubble-slot for a period of 2 cycles which
+        was not interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_32
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 32 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_4
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 4 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_512
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 512 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_64
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 64 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.latency_ge_8
+       [Retired instructions that are fetched after an interval where the
+        front-end delivered no uops for a period of 8 cycles which was not
+        interrupted by a back-end stall (Precise event)]
+  frontend_retired.ms_flows
+       [FRONTEND_RETIRED.MS_FLOWS (Precise event)]
+  frontend_retired.stlb_miss
+       [Retired Instructions who experienced STLB (2nd level TLB) true miss
+        (Precise event)]
+  frontend_retired.unknown_branch
+       [FRONTEND_RETIRED.UNKNOWN_BRANCH (Precise event)]
+  icache_data.stalls
+       [Cycles where a code fetch is stalled due to L1 instruction cache miss]
+  icache_tag.stalls
+       [Cycles where a code fetch is stalled due to L1 instruction cache tag
+        miss]
+  idq.dsb_cycles_any
+       [Cycles Decode Stream Buffer (DSB) is delivering any Uop]
+  idq.dsb_cycles_ok
+       [Cycles DSB is delivering optimal number of Uops]
+  idq.dsb_uops
+       [Uops delivered to Instruction Decode Queue (IDQ) from the Decode
+        Stream Buffer (DSB) path]
+  idq.mite_cycles_any
+       [Cycles MITE is delivering any Uop]
+  idq.mite_cycles_ok
+       [Cycles MITE is delivering optimal number of Uops]
+  idq.mite_uops
+       [Uops delivered to Instruction Decode Queue (IDQ) from MITE path]
+  idq.ms_cycles_any
+       [Cycles when uops are being delivered to IDQ while MS is busy]
+  idq.ms_switches
+       [Number of switches from DSB or MITE to the MS]
+  idq.ms_uops
+       [Uops delivered to IDQ while MS is busy]
+  idq_uops_not_delivered.core
+       [Uops not delivered by IDQ when backend of the machine is not stalled]
+  idq_uops_not_delivered.cycles_0_uops_deliv.core
+       [Cycles when no uops are not delivered by the IDQ when backend of the
+        machine is not stalled]
+  idq_uops_not_delivered.cycles_fe_was_ok
+       [Cycles when optimal number of uops was delivered to the back-end when
+        the back-end is not stalled]
+
+memory:
+  cycle_activity.stalls_l3_miss
+       [Execution stalls while L3 cache miss demand load is outstanding]
+  machine_clears.memory_ordering
+       [Number of machine clears due to memory ordering conflicts]
+  mem_trans_retired.load_latency_gt_128
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 128 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_16
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 16 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_256
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 256 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_32
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 32 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_4
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 4 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_512
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 512 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_64
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 64 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.load_latency_gt_8
+       [Counts randomly selected loads when the latency from first dispatch to
+        completion is greater than 8 cycles Supports address when precise
+        (Must be precise)]
+  mem_trans_retired.store_sample
+       [Retired memory store access operations. A PDist event for PEBS Store
+        Latency Facility Supports address when precise (Must be precise)]
+  memory_activity.cycles_l1d_miss
+       [Cycles while L1 cache miss demand load is outstanding]
+  memory_activity.stalls_l1d_miss
+       [Execution stalls while L1 cache miss demand load is outstanding]
+  memory_activity.stalls_l2_miss
+       [MEMORY_ACTIVITY.STALLS_L2_MISS]
+  memory_activity.stalls_l3_miss
+       [MEMORY_ACTIVITY.STALLS_L3_MISS]
+  ocr.demand_code_rd.l3_miss
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that were not supplied by the local socket's L1, L2, or L3 caches]
+  ocr.demand_data_rd.l3_miss
+       [Counts demand data reads that were not supplied by the local socket's
+        L1, L2, or L3 caches]
+  ocr.demand_rfo.l3_miss
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that were not supplied
+        by the local socket's L1, L2, or L3 caches]
+  ocr.hwpf_l3.l3_miss
+       [Counts hardware prefetches to the L3 only that missed the local
+        socket's L1, L2, and L3 caches]
+  ocr.hwpf_l3.l3_miss_local
+       [Counts hardware prefetches to the L3 only that were not supplied by
+        the local socket's L1, L2, or L3 caches and the cacheline is homed
+        locally]
+  ocr.reads_to_core.l3_miss
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were not
+        supplied by the local socket's L1, L2, or L3 caches]
+  ocr.reads_to_core.l3_miss_local
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were not
+        supplied by the local socket's L1, L2, or L3 caches and the cacheline
+        is homed locally]
+  ocr.reads_to_core.l3_miss_local_socket
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that missed the
+        L3 Cache and were supplied by the local socket (DRAM or PMM), whether
+        or not in Sub NUMA Cluster(SNC) Mode. In SNC Mode counts PMM or DRAM
+        accesses that are controlled by the close or distant SNC Cluster. It
+        does not count misses to the L3 which go to Local CXL Type 2 Memory or
+        Local Non DRAM]
+  ocr.streaming_wr.l3_miss
+       [Counts streaming stores that missed the local socket's L1, L2, and L3
+        caches]
+  ocr.streaming_wr.l3_miss_local
+       [Counts streaming stores that were not supplied by the local socket's
+        L1, L2, or L3 caches and the cacheline is homed locally]
+  offcore_requests.l3_miss_demand_data_rd
+       [Counts demand data read requests that miss the L3 cache]
+  offcore_requests_outstanding.l3_miss_demand_data_rd
+       [For every cycle, increments by the number of demand data read requests
+        pending that are known to have missed the L3 cache]
+  rtm_retired.aborted
+       [Number of times an RTM execution aborted]
+  rtm_retired.aborted_events
+       [Number of times an RTM execution aborted due to none of the previous 4
+        categories (e.g. interrupt)]
+  rtm_retired.aborted_mem
+       [Number of times an RTM execution aborted due to various memory events
+        (e.g. read/write capacity and conflicts)]
+  rtm_retired.aborted_memtype
+       [Number of times an RTM execution aborted due to incompatible memory
+        type]
+  rtm_retired.aborted_unfriendly
+       [Number of times an RTM execution aborted due to HLE-unfriendly
+        instructions]
+  rtm_retired.commit
+       [Number of times an RTM execution successfully committed]
+  rtm_retired.start
+       [Number of times an RTM execution started]
+  tx_mem.abort_capacity_read
+       [Speculatively counts the number of TSX aborts due to a data capacity
+        limitation for transactional reads]
+  tx_mem.abort_capacity_write
+       [Speculatively counts the number of TSX aborts due to a data capacity
+        limitation for transactional writes]
+  tx_mem.abort_conflict
+       [Number of times a transactional abort was signaled due to a data
+        conflict on a transactionally accessed address]
+
+other:
+  assists.page_fault
+       [ASSISTS.PAGE_FAULT]
+  exe.amx_busy
+       [Counts the cycles where the AMX (Advance Matrix Extension) unit is
+        busy performing an operation]
+  ocr.demand_code_rd.any_response
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that have any type of response]
+  ocr.demand_code_rd.dram
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that were supplied by DRAM]
+  ocr.demand_code_rd.local_dram
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that were supplied by DRAM attached to this socket, unless in Sub NUMA
+        Cluster(SNC) Mode. In SNC Mode counts only those DRAM accesses that
+        are controlled by the close SNC Cluster]
+  ocr.demand_code_rd.snc_dram
+       [Counts demand instruction fetches and L1 instruction cache prefetches
+        that were supplied by DRAM on a distant memory controller of this
+        socket when the system is in SNC (sub-NUMA cluster) mode]
+  ocr.demand_data_rd.any_response
+       [Counts demand data reads that have any type of response]
+  ocr.demand_data_rd.dram
+       [Counts demand data reads that were supplied by DRAM]
+  ocr.demand_data_rd.local_dram
+       [Counts demand data reads that were supplied by DRAM attached to this
+        socket, unless in Sub NUMA Cluster(SNC) Mode. In SNC Mode counts only
+        those DRAM accesses that are controlled by the close SNC Cluster]
+  ocr.demand_data_rd.remote_dram
+       [Counts demand data reads that were supplied by DRAM attached to
+        another socket]
+  ocr.demand_data_rd.remote_pmm
+       [Counts demand data reads that were supplied by PMM attached to another
+        socket]
+  ocr.demand_data_rd.snc_dram
+       [Counts demand data reads that were supplied by DRAM on a distant
+        memory controller of this socket when the system is in SNC (sub-NUMA
+        cluster) mode]
+  ocr.demand_rfo.any_response
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that have any type of
+        response]
+  ocr.demand_rfo.dram
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that were supplied by
+        DRAM]
+  ocr.demand_rfo.local_dram
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that were supplied by
+        DRAM attached to this socket, unless in Sub NUMA Cluster(SNC) Mode. In
+        SNC Mode counts only those DRAM accesses that are controlled by the
+        close SNC Cluster]
+  ocr.demand_rfo.snc_dram
+       [Counts demand reads for ownership (RFO) requests and software
+        prefetches for exclusive ownership (PREFETCHW) that were supplied by
+        DRAM on a distant memory controller of this socket when the system is
+        in SNC (sub-NUMA cluster) mode]
+  ocr.hwpf_l1d.any_response
+       [Counts data load hardware prefetch requests to the L1 data cache that
+        have any type of response]
+  ocr.hwpf_l2.any_response
+       [Counts hardware prefetches (which bring data to L2) that have any type
+        of response]
+  ocr.hwpf_l3.any_response
+       [Counts hardware prefetches to the L3 only that have any type of
+        response]
+  ocr.hwpf_l3.remote
+       [Counts hardware prefetches to the L3 only that were not supplied by
+        the local socket's L1, L2, or L3 caches and the cacheline was homed in
+        a remote socket]
+  ocr.modified_write.any_response
+       [Counts writebacks of modified cachelines and streaming stores that
+        have any type of response]
+  ocr.reads_to_core.any_response
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that have any
+        type of response]
+  ocr.reads_to_core.dram
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by DRAM]
+  ocr.reads_to_core.local_dram
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by DRAM attached to this socket, unless in Sub NUMA
+        Cluster(SNC) Mode. In SNC Mode counts only those DRAM accesses that
+        are controlled by the close SNC Cluster]
+  ocr.reads_to_core.local_socket_dram
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by DRAM attached to this socket, whether or not in Sub NUMA
+        Cluster(SNC) Mode. In SNC Mode counts DRAM accesses that are
+        controlled by the close or distant SNC Cluster]
+  ocr.reads_to_core.local_socket_pmm
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by PMM attached to this socket, whether or not in Sub NUMA
+        Cluster(SNC) Mode. In SNC Mode counts PMM accesses that are controlled
+        by the close or distant SNC Cluster]
+  ocr.reads_to_core.remote
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were not
+        supplied by the local socket's L1, L2, or L3 caches and were supplied
+        by a remote socket]
+  ocr.reads_to_core.remote_dram
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by DRAM attached to another socket]
+  ocr.reads_to_core.remote_memory
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by DRAM or PMM attached to another socket]
+  ocr.reads_to_core.remote_pmm
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by PMM attached to another socket]
+  ocr.reads_to_core.snc_dram
+       [Counts all (cacheable) data read, code read and RFO requests including
+        demands and prefetches to the core caches (L1 or L2) that were
+        supplied by DRAM on a distant memory controller of this socket when
+        the system is in SNC (sub-NUMA cluster) mode]
+  ocr.streaming_wr.any_response
+       [Counts streaming stores that have any type of response]
+  ocr.write_estimate.memory
+       [Counts Demand RFOs, ItoM's, PREFECTHW's, Hardware RFO Prefetches to
+        the L1/L2 and Streaming stores that likely resulted in a store to
+        Memory (DRAM or PMM)]
+  rs.empty
+       [Cycles when Reservation Station (RS) is empty for the thread]
+  rs.empty_count
+       [Counts end of periods where the Reservation Station (RS) was empty]
+  xq.full_cycles
+       [XQ.FULL_CYCLES]
+
+pipeline:
+  amx_ops_retired.bf16
+       [AMX_OPS_RETIRED.BF16]
+  amx_ops_retired.int8
+       [AMX_OPS_RETIRED.INT8]
+  arith.div_active
+       [Cycles when divide unit is busy executing divide or square root
+        operations]
+  arith.idiv_active
+       [This event counts the cycles the integer divider is busy]
+  assists.any
+       [Number of occurrences where a microcode assist is invoked by hardware]
+  br_inst_retired.all_branches
+       [All branch instructions retired (Precise event)]
+  br_inst_retired.cond
+       [Conditional branch instructions retired (Precise event)]
+  br_inst_retired.cond_ntaken
+       [Not taken branch instructions retired (Precise event)]
+  br_inst_retired.cond_taken
+       [Taken conditional branch instructions retired (Precise event)]
+  br_inst_retired.far_branch
+       [Far branch instructions retired (Precise event)]
+  br_inst_retired.indirect
+       [Indirect near branch instructions retired (excluding returns) (Precise
+        event)]
+  br_inst_retired.near_call
+       [Direct and indirect near call instructions retired (Precise event)]
+  br_inst_retired.near_return
+       [Return instructions retired (Precise event)]
+  br_inst_retired.near_taken
+       [Taken branch instructions retired (Precise event)]
+  br_misp_retired.all_branches
+       [All mispredicted branch instructions retired (Precise event)]
+  br_misp_retired.cond
+       [Mispredicted conditional branch instructions retired (Precise event)]
+  br_misp_retired.cond_ntaken
+       [Mispredicted non-taken conditional branch instructions retired
+        (Precise event)]
+  br_misp_retired.cond_taken
+       [number of branch instructions retired that were mispredicted and taken
+        (Precise event)]
+  br_misp_retired.indirect
+       [Miss-predicted near indirect branch instructions retired (excluding
+        returns) (Precise event)]
+  br_misp_retired.indirect_call
+       [Mispredicted indirect CALL retired (Precise event)]
+  br_misp_retired.near_taken
+       [Number of near branch instructions retired that were mispredicted and
+        taken (Precise event)]
+  br_misp_retired.ret
+       [This event counts the number of mispredicted ret instructions retired.
+        Non PEBS (Precise event)]
+  cpu_clk_unhalted.c01
+       [Core clocks when the thread is in the C0.1 light-weight slower wakeup
+        time but more power saving optimized state]
+  cpu_clk_unhalted.c02
+       [Core clocks when the thread is in the C0.2 light-weight faster wakeup
+        time but less power saving optimized state]
+  cpu_clk_unhalted.c0_wait
+       [Core clocks when the thread is in the C0.1 or C0.2 or running a PAUSE
+        in C0 ACPI state]
+  cpu_clk_unhalted.distributed
+       [Cycle counts are evenly distributed between active threads in the Core]
+  cpu_clk_unhalted.one_thread_active
+       [Core crystal clock cycles when this thread is unhalted and the other
+        thread is halted]
+  cpu_clk_unhalted.pause
+       [CPU_CLK_UNHALTED.PAUSE]
+  cpu_clk_unhalted.pause_inst
+       [CPU_CLK_UNHALTED.PAUSE_INST]
+  cpu_clk_unhalted.ref_distributed
+       [Core crystal clock cycles. Cycle counts are evenly distributed between
+        active threads in the Core]
+  cpu_clk_unhalted.ref_tsc
+       [Reference cycles when the core is not in halt state]
+  cpu_clk_unhalted.ref_tsc_p
+       [Reference cycles when the core is not in halt state]
+  cpu_clk_unhalted.thread
+       [Core cycles when the thread is not in halt state]
+  cpu_clk_unhalted.thread_p
+       [Thread cycles when thread is not in halt state]
+  cycle_activity.cycles_l1d_miss
+       [Cycles while L1 cache miss demand load is outstanding]
+  cycle_activity.cycles_l2_miss
+       [Cycles while L2 cache miss demand load is outstanding]
+  cycle_activity.cycles_mem_any
+       [Cycles while memory subsystem has an outstanding load]
+  cycle_activity.stalls_l1d_miss
+       [Execution stalls while L1 cache miss demand load is outstanding]
+  cycle_activity.stalls_l2_miss
+       [Execution stalls while L2 cache miss demand load is outstanding]
+  cycle_activity.stalls_total
+       [Total execution stalls]
+  exe_activity.1_ports_util
+       [Cycles total of 1 uop is executed on all ports and Reservation Station
+        was not empty]
+  exe_activity.2_ports_util
+       [Cycles total of 2 uops are executed on all ports and Reservation
+        Station was not empty]
+  exe_activity.3_ports_util
+       [Cycles total of 3 uops are executed on all ports and Reservation
+        Station was not empty]
+  exe_activity.4_ports_util
+       [Cycles total of 4 uops are executed on all ports and Reservation
+        Station was not empty]
+  exe_activity.bound_on_loads
+       [Execution stalls while memory subsystem has an outstanding load]
+  exe_activity.bound_on_stores
+       [Cycles where the Store Buffer was full and no loads caused an
+        execution stall]
+  exe_activity.exe_bound_0_ports
+       [Cycles no uop executed while RS was not empty, the SB was not full and
+        there was no outstanding load]
+  inst_decoded.decoders
+       [Instruction decoders utilized in a cycle]
+  inst_retired.any
+       [Number of instructions retired. Fixed Counter - architectural event
+        (Precise event)]
+  inst_retired.any_p
+       [Number of instructions retired. General Counter - architectural event
+        (Precise event)]
+  inst_retired.macro_fused
+       [INST_RETIRED.MACRO_FUSED]
+  inst_retired.nop
+       [Retired NOP instructions]
+  inst_retired.prec_dist
+       [Precise instruction retired with PEBS precise-distribution (Precise
+        event)]
+  inst_retired.rep_iteration
+       [INST_RETIRED.REP_ITERATION]
+  int_misc.clear_resteer_cycles
+       [Counts cycles after recovery from a branch misprediction or machine
+        clear till the first uop is issued from the resteered path]
+  int_misc.mba_stalls
+       [INT_MISC.MBA_STALLS]
+  int_misc.recovery_cycles
+       [Core cycles the allocator was stalled due to recovery from earlier
+        clear event for this thread]
+  int_misc.unknown_branch_cycles
+       [INT_MISC.UNKNOWN_BRANCH_CYCLES]
+  int_misc.uop_dropping
+       [TMA slots where uops got dropped]
+  int_vec_retired.128bit
+       [INT_VEC_RETIRED.128BIT]
+  int_vec_retired.256bit
+       [INT_VEC_RETIRED.256BIT]
+  int_vec_retired.add_128
+       [integer ADD, SUB, SAD 128-bit vector instructions]
+  int_vec_retired.add_256
+       [integer ADD, SUB, SAD 256-bit vector instructions]
+  int_vec_retired.mul_256
+       [INT_VEC_RETIRED.MUL_256]
+  int_vec_retired.shuffles
+       [INT_VEC_RETIRED.SHUFFLES]
+  int_vec_retired.vnni_128
+       [INT_VEC_RETIRED.VNNI_128]
+  int_vec_retired.vnni_256
+       [INT_VEC_RETIRED.VNNI_256]
+  ld_blocks.address_alias
+       [False dependencies in MOB due to partial compare on address]
+  ld_blocks.no_sr
+       [The number of times that split load operations are temporarily blocked
+        because all resources for handling the split accesses are in use]
+  ld_blocks.store_forward
+       [Loads blocked due to overlapping with a preceding store that cannot be
+        forwarded]
+  load_hit_prefetch.swpf
+       [Counts the number of demand load dispatches that hit L1D fill buffer
+        (FB) allocated for software prefetch]
+  lsd.cycles_active
+       [Cycles Uops delivered by the LSD, but didn't come from the decoder]
+  lsd.cycles_ok
+       [Cycles optimal number of Uops delivered by the LSD, but did not come
+        from the decoder]
+  lsd.uops
+       [Number of Uops delivered by the LSD]
+  machine_clears.count
+       [Number of machine clears (nukes) of any type]
+  machine_clears.smc
+       [Self-modifying code (SMC) detected]
+  misc2_retired.lfence
+       [MISC2_RETIRED.LFENCE]
+  misc_retired.lbr_inserts
+       [Increments whenever there is an update to the LBR array]
+  resource_stalls.sb
+       [Cycles stalled due to no store buffers available. (not including
+        draining form sync)]
+  resource_stalls.scoreboard
+       [Counts cycles where the pipeline is stalled due to serializing
+        operations]
+  topdown.backend_bound_slots
+       [TMA slots where no uops were being issued due to lack of back-end
+        resources]
+  topdown.bad_spec_slots
+       [TMA slots wasted due to incorrect speculations]
+  topdown.br_mispredict_slots
+       [TMA slots wasted due to incorrect speculation by branch mispredictions]
+  topdown.memory_bound_slots
+       [TOPDOWN.MEMORY_BOUND_SLOTS]
+  topdown.slots
+       [TMA slots available for an unhalted logical processor. Fixed counter -
+        architectural event]
+  topdown.slots_p
+       [TMA slots available for an unhalted logical processor. General counter
+        - architectural event]
+  uops_decoded.dec0_uops
+       [UOPS_DECODED.DEC0_UOPS]
+  uops_dispatched.port_0
+       [Uops executed on port 0]
+  uops_dispatched.port_1
+       [Uops executed on port 1]
+  uops_dispatched.port_2_3_10
+       [Uops executed on ports 2, 3 and 10]
+  uops_dispatched.port_4_9
+       [Uops executed on ports 4 and 9]
+  uops_dispatched.port_5_11
+       [Uops executed on ports 5 and 11]
+  uops_dispatched.port_6
+       [Uops executed on port 6]
+  uops_dispatched.port_7_8
+       [Uops executed on ports 7 and 8]
+  uops_executed.core
+       [Number of uops executed on the core]
+  uops_executed.core_cycles_ge_1
+       [Cycles at least 1 micro-op is executed from any thread on physical
+        core]
+  uops_executed.core_cycles_ge_2
+       [Cycles at least 2 micro-op is executed from any thread on physical
+        core]
+  uops_executed.core_cycles_ge_3
+       [Cycles at least 3 micro-op is executed from any thread on physical
+        core]
+  uops_executed.core_cycles_ge_4
+       [Cycles at least 4 micro-op is executed from any thread on physical
+        core]
+  uops_executed.cycles_ge_1
+       [Cycles where at least 1 uop was executed per-thread]
+  uops_executed.cycles_ge_2
+       [Cycles where at least 2 uops were executed per-thread]
+  uops_executed.cycles_ge_3
+       [Cycles where at least 3 uops were executed per-thread]
+  uops_executed.cycles_ge_4
+       [Cycles where at least 4 uops were executed per-thread]
+  uops_executed.stalls
+       [Counts number of cycles no uops were dispatched to be executed on this
+        thread]
+  uops_executed.thread
+       [Counts the number of uops to be executed per-thread each cycle]
+  uops_executed.x87
+       [Counts the number of x87 uops dispatched]
+  uops_issued.any
+       [Uops that RAT issues to RS]
+  uops_retired.cycles
+       [Cycles with retired uop(s)]
+  uops_retired.heavy
+       [Retired uops except the last uop of each instruction]
+  uops_retired.ms
+       [UOPS_RETIRED.MS]
+  uops_retired.slots
+       [Retirement slots used]
+  uops_retired.stalls
+       [Cycles without actually retired uops]
+
+virtual memory:
+  dtlb_load_misses.stlb_hit
+       [Loads that miss the DTLB and hit the STLB]
+  dtlb_load_misses.walk_active
+       [Cycles when at least one PMH is busy with a page walk for a demand
+        load]
+  dtlb_load_misses.walk_completed
+       [Load miss in all TLB levels causes a page walk that completes. (All
+        page sizes)]
+  dtlb_load_misses.walk_completed_1g
+       [Page walks completed due to a demand data load to a 1G page]
+  dtlb_load_misses.walk_completed_2m_4m
+       [Page walks completed due to a demand data load to a 2M/4M page]
+  dtlb_load_misses.walk_completed_4k
+       [Page walks completed due to a demand data load to a 4K page]
+  dtlb_load_misses.walk_pending
+       [Number of page walks outstanding for a demand load in the PMH each
+        cycle]
+  dtlb_store_misses.stlb_hit
+       [Stores that miss the DTLB and hit the STLB]
+  dtlb_store_misses.walk_active
+       [Cycles when at least one PMH is busy with a page walk for a store]
+  dtlb_store_misses.walk_completed
+       [Store misses in all TLB levels causes a page walk that completes. (All
+        page sizes)]
+  dtlb_store_misses.walk_completed_1g
+       [Page walks completed due to a demand data store to a 1G page]
+  dtlb_store_misses.walk_completed_2m_4m
+       [Page walks completed due to a demand data store to a 2M/4M page]
+  dtlb_store_misses.walk_completed_4k
+       [Page walks completed due to a demand data store to a 4K page]
+  dtlb_store_misses.walk_pending
+       [Number of page walks outstanding for a store in the PMH each cycle]
+  itlb_misses.stlb_hit
+       [Instruction fetch requests that miss the ITLB and hit the STLB]
+  itlb_misses.walk_active
+       [Cycles when at least one PMH is busy with a page walk for code
+        (instruction fetch) request]
+  itlb_misses.walk_completed
+       [Code miss in all TLB levels causes a page walk that completes. (All
+        page sizes)]
+  itlb_misses.walk_completed_2m_4m
+       [Code miss in all TLB levels causes a page walk that completes. (2M/4M)]
+  itlb_misses.walk_completed_4k
+       [Code miss in all TLB levels causes a page walk that completes. (4K)]
+  itlb_misses.walk_pending
+       [Number of page walks outstanding for an outstanding code request in
+        the PMH each cycle]
+  rNNN                                               [Raw hardware event descriptor]
+  cpu/t1=v1[,t2=v2,t3 ...]/modifier                  [Raw hardware event descriptor]
+       [(see 'man perf-list' on how to encode it)]
+  mem:<addr>[/len][:access]                          [Hardware breakpoint]
+  sdt_libc:cond_broadcast                            [SDT event]
+  sdt_libc:cond_destroy                              [SDT event]
+  sdt_libc:cond_init                                 [SDT event]
+  sdt_libc:cond_signal                               [SDT event]
+  sdt_libc:cond_wait                                 [SDT event]
+  sdt_libc:lll_lock_wait                             [SDT event]
+  sdt_libc:lll_lock_wait_private                     [SDT event]
+  sdt_libc:longjmp                                   [SDT event]
+  sdt_libc:longjmp_target                            [SDT event]
+  sdt_libc:memory_arena_new                          [SDT event]
+  sdt_libc:memory_arena_retry                        [SDT event]
+  sdt_libc:memory_arena_reuse                        [SDT event]
+  sdt_libc:memory_arena_reuse_free_list              [SDT event]
+  sdt_libc:memory_arena_reuse_wait                   [SDT event]
+  sdt_libc:memory_calloc_retry                       [SDT event]
+  sdt_libc:memory_heap_free                          [SDT event]
+  sdt_libc:memory_heap_less                          [SDT event]
+  sdt_libc:memory_heap_more                          [SDT event]
+  sdt_libc:memory_heap_new                           [SDT event]
+  sdt_libc:memory_malloc_retry                       [SDT event]
+  sdt_libc:memory_mallopt                            [SDT event]
+  sdt_libc:memory_mallopt_arena_max                  [SDT event]
+  sdt_libc:memory_mallopt_arena_test                 [SDT event]
+  sdt_libc:memory_mallopt_free_dyn_thresholds        [SDT event]
+  sdt_libc:memory_mallopt_mmap_max                   [SDT event]
+  sdt_libc:memory_mallopt_mmap_threshold             [SDT event]
+  sdt_libc:memory_mallopt_mxfast                     [SDT event]
+  sdt_libc:memory_mallopt_perturb                    [SDT event]
+  sdt_libc:memory_mallopt_top_pad                    [SDT event]
+  sdt_libc:memory_mallopt_trim_threshold             [SDT event]
+  sdt_libc:memory_memalign_retry                     [SDT event]
+  sdt_libc:memory_realloc_retry                      [SDT event]
+  sdt_libc:memory_sbrk_less                          [SDT event]
+  sdt_libc:memory_sbrk_more                          [SDT event]
+  sdt_libc:memory_tcache_double_free                 [SDT event]
+  sdt_libc:memory_tunable_tcache_count               [SDT event]
+  sdt_libc:memory_tunable_tcache_max_bytes           [SDT event]
+  sdt_libc:memory_tunable_tcache_unsorted_limit      [SDT event]
+  sdt_libc:mutex_acquired                            [SDT event]
+  sdt_libc:mutex_clocklock_entry                     [SDT event]
+  sdt_libc:mutex_destroy                             [SDT event]
+  sdt_libc:mutex_entry                               [SDT event]
+  sdt_libc:mutex_init                                [SDT event]
+  sdt_libc:mutex_release                             [SDT event]
+  sdt_libc:mutex_timedlock_acquired                  [SDT event]
+  sdt_libc:mutex_timedlock_entry                     [SDT event]
+  sdt_libc:pthread_create                            [SDT event]
+  sdt_libc:pthread_join                              [SDT event]
+  sdt_libc:pthread_join_ret                          [SDT event]
+  sdt_libc:pthread_start                             [SDT event]
+  sdt_libc:rdlock_acquire_read                       [SDT event]
+  sdt_libc:rdlock_entry                              [SDT event]
+  sdt_libc:rwlock_destroy                            [SDT event]
+  sdt_libc:rwlock_unlock                             [SDT event]
+  sdt_libc:setjmp                                    [SDT event]
+  sdt_libc:wrlock_acquire_write                      [SDT event]
+  sdt_libc:wrlock_entry                              [SDT event]
+  sdt_rtld:init_complete                             [SDT event]
+  sdt_rtld:init_start                                [SDT event]
+  sdt_rtld:lll_lock_wait                             [SDT event]
+  sdt_rtld:lll_lock_wait_private                     [SDT event]
+  sdt_rtld:longjmp                                   [SDT event]
+  sdt_rtld:longjmp_target                            [SDT event]
+  sdt_rtld:map_complete                              [SDT event]
+  sdt_rtld:map_start                                 [SDT event]
+  sdt_rtld:reloc_complete                            [SDT event]
+  sdt_rtld:reloc_start                               [SDT event]
+  sdt_rtld:setjmp                                    [SDT event]
+  sdt_rtld:unmap_complete                            [SDT event]
+  sdt_rtld:unmap_start                               [SDT event]
+
+Metric Groups:
+
+Backend:
+  ILP
+       [Instruction-Level-Parallelism (average number of uops executed when
+        there is execution) per-core]
+  L2MPKI
+       [L2 cache true misses per kilo instruction for retired demand loads]
+  tma_core_bound
+       [This metric represents fraction of slots where Core non-memory issues
+        were of a bottleneck]
+  tma_memory_bound
+       [This metric represents fraction of slots the Memory subsystem within
+        the Backend was a bottleneck]
+
+Bad:
+  Branch_Misprediction_Cost
+       [Branch Misprediction Cost: Fraction of TMA slots wasted per
+        non-speculative branch misprediction (retired JEClear)]
+  CallRet
+       [Fraction of branches that are CALL or RET]
+  Cond_NT
+       [Fraction of branches that are non-taken conditionals]
+  Cond_TK
+       [Fraction of branches that are taken conditionals]
+  IpMispredict
+       [Number of Instructions per non-speculative Branch Misprediction
+        (JEClear) (lower number means higher occurrence rate)]
+  Jump
+       [Fraction of branches that are unconditional (direct or indirect) jumps]
+  Mispredictions
+       [Total pipeline cost of Branch Misprediction related bottlenecks]
+  Other_Branches
+       [Fraction of branches of other types (not individually covered by other
+        metrics in Info.Branches group)]
+
+BadSpec:
+  IpMispredict
+       [Number of Instructions per non-speculative Branch Misprediction
+        (JEClear) (lower number means higher occurrence rate)]
+  Mispredictions
+       [Total pipeline cost of Branch Misprediction related bottlenecks]
+  tma_branch_mispredicts
+       [This metric represents fraction of slots the CPU has wasted due to
+        Branch Misprediction]
+  tma_clears_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Machine Clears]
+  tma_machine_clears
+       [This metric represents fraction of slots the CPU has wasted due to
+        Machine Clears]
+  tma_mispredicts_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Branch Misprediction at execution stage]
+
+BigFoot:
+  Big_Code
+       [Total pipeline cost of instruction fetch related bottlenecks by large
+        code footprint programs (i-side cache; TLB and BTB misses)]
+  tma_icache_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        instruction cache misses]
+  tma_itlb_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Instruction TLB (ITLB) misses]
+  tma_unknown_branches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        new branch address clears]
+
+BrMispredicts:
+  Branch_Misprediction_Cost
+       [Branch Misprediction Cost: Fraction of TMA slots wasted per
+        non-speculative branch misprediction (retired JEClear)]
+  IpMispredict
+       [Number of Instructions per non-speculative Branch Misprediction
+        (JEClear) (lower number means higher occurrence rate)]
+  Mispredictions
+       [Total pipeline cost of Branch Misprediction related bottlenecks]
+  tma_branch_mispredicts
+       [This metric represents fraction of slots the CPU has wasted due to
+        Branch Misprediction]
+  tma_mispredicts_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Branch Misprediction at execution stage]
+
+Branches:
+  BpTkBranch
+       [Branch instructions per taken branch]
+  CallRet
+       [Fraction of branches that are CALL or RET]
+  Cond_NT
+       [Fraction of branches that are non-taken conditionals]
+  Cond_TK
+       [Fraction of branches that are taken conditionals]
+  IpBranch
+       [Instructions per Branch (lower number means higher occurrence rate)]
+  IpCall
+       [Instructions per (near) call (lower number means higher occurrence
+        rate)]
+  IpFarBranch
+       [Instructions per Far Branch ( Far Branches apply upon transition from
+        application to operating system, handling interrupts, exceptions)
+        [lower number means higher occurrence rate]]
+  IpTB
+       [Instruction per taken branch]
+  Jump
+       [Fraction of branches that are unconditional (direct or indirect) jumps]
+  Other_Branches
+       [Fraction of branches of other types (not individually covered by other
+        metrics in Info.Branches group)]
+  UpTB
+       [Instruction per taken branch]
+
+CacheMisses:
+  FB_HPKI
+       [Fill Buffer (FB) hits per kilo instructions for retired demand loads
+        (L1D misses that merge into ongoing miss-handling entries)]
+  L1MPKI
+       [L1 cache true misses per kilo instruction for retired demand loads]
+  L1MPKI_Load
+       [L1 cache true misses per kilo instruction for all demand loads
+        (including speculative)]
+  L2HPKI_All
+       [L2 cache hits per kilo instruction for all request types (including
+        speculative)]
+  L2HPKI_Load
+       [L2 cache hits per kilo instruction for all demand loads (including
+        speculative)]
+  L2MPKI
+       [L2 cache true misses per kilo instruction for retired demand loads]
+  L2MPKI_All
+       [L2 cache ([RKL+] true) misses per kilo instruction for all request
+        types (including speculative)]
+  L2MPKI_Load
+       [L2 cache ([RKL+] true) misses per kilo instruction for all demand
+        loads (including speculative)]
+  L3MPKI
+       [L3 cache true misses per kilo instruction for retired demand loads]
+  tma_l1_bound
+       [This metric estimates how often the CPU was stalled without loads
+        missing the L1 data cache]
+  tma_l2_bound
+       [This metric estimates how often the CPU was stalled due to L2 cache
+        accesses by loads]
+  tma_l3_bound
+       [This metric estimates how often the CPU was stalled due to loads
+        accesses to L3 cache or contended with a sibling Core]
+
+CodeGen:
+  Cond_NT
+       [Fraction of branches that are non-taken conditionals]
+  Cond_TK
+       [Fraction of branches that are taken conditionals]
+
+Compute:
+  tma_amx_busy
+       [This metric estimates fraction of cycles where the Advanced Matrix
+        Extensions (AMX) execution engine was busy with tile (arithmetic)
+        operations]
+  tma_core_bound
+       [This metric represents fraction of slots where Core non-memory issues
+        were of a bottleneck]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fp_scalar
+       [This metric approximates arithmetic floating-point (FP) scalar uops
+        fraction the CPU has retired]
+  tma_fp_vector
+       [This metric approximates arithmetic floating-point (FP) vector uops
+        fraction the CPU has retired aggregated across all vector widths]
+  tma_fp_vector_128b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 128-bit wide vectors]
+  tma_fp_vector_256b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 256-bit wide vectors]
+  tma_fp_vector_512b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 512-bit wide vectors]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_int_vector_128b
+       [This metric represents 128-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_int_vector_256b
+       [This metric represents 256-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_port_0
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 0 ([SNB+] ALU; [HSW+] ALU and 2nd branch)]
+  tma_x87_use
+       [This metric serves as an approximation of legacy x87 usage]
+
+Cor:
+  Core_Bound_Likely
+       [Probability of Core Bound bottleneck hidden by SMT-profiling artifacts]
+  Execute
+  Execute_per_Issue
+       [The ratio of Executed- by Issued-Uops]
+  FP_Arith_Utilization
+       [Actual per-core usage of the Floating Point non-X87 execution units
+        (regardless of precision or vector-width)]
+  GFLOPs
+       [Giga Floating Point Operations Per Second]
+  ILP
+       [Instruction-Level-Parallelism (average number of uops executed when
+        there is execution) per-core]
+  TIOPS
+       [Tera Integer (matrix) Operations Per Second]
+
+DSB:
+  DSB_Coverage
+       [Fraction of Uops delivered by the DSB (aka Decoded ICache; or Uop
+        Cache)]
+  tma_dsb
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to DSB (decoded uop cache) fetch pipeline]
+
+DSBmiss:
+  DSB_Misses
+       [Total penalty related to DSB (uop cache) misses - subset of the
+        Instruction_Fetch_BW Bottleneck]
+  DSB_Switch_Cost
+       [Average number of cycles of a switch from the DSB fetch-unit to MITE
+        fetch unit - see DSB_Switches tree node for details]
+  IpDSB_Miss_Ret
+       [Number of Instructions per non-speculative DSB miss (lower number
+        means higher occurrence rate)]
+  tma_decoder0_alone
+       [This metric represents fraction of cycles where decoder-0 was the only
+        active decoder]
+  tma_dsb_switches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        switches from DSB to MITE pipelines]
+  tma_mite
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to the MITE pipeline (the legacy decode pipeline)]
+
+DataSharing:
+  tma_contested_accesses
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to contested accesses]
+  tma_false_sharing
+       [This metric roughly estimates how often CPU was handling
+        synchronizations due to False Sharing]
+
+Fed:
+  Big_Code
+       [Total pipeline cost of instruction fetch related bottlenecks by large
+        code footprint programs (i-side cache; TLB and BTB misses)]
+  BpTkBranch
+       [Branch instructions per taken branch]
+  DSB_Coverage
+       [Fraction of Uops delivered by the DSB (aka Decoded ICache; or Uop
+        Cache)]
+  DSB_Misses
+       [Total penalty related to DSB (uop cache) misses - subset of the
+        Instruction_Fetch_BW Bottleneck]
+  Fetch_UpC
+       [Average number of Uops issued by front-end when it issued something]
+  Instruction_Fetch_BW
+       [Total pipeline cost of instruction fetch bandwidth related bottlenecks]
+  IpBranch
+       [Instructions per Branch (lower number means higher occurrence rate)]
+  IpCall
+       [Instructions per (near) call (lower number means higher occurrence
+        rate)]
+  IpDSB_Miss_Ret
+       [Number of Instructions per non-speculative DSB miss (lower number
+        means higher occurrence rate)]
+  IpTB
+       [Instruction per taken branch]
+  UpTB
+       [Instruction per taken branch]
+
+FetchBW:
+  DSB_Coverage
+       [Fraction of Uops delivered by the DSB (aka Decoded ICache; or Uop
+        Cache)]
+  Fetch_UpC
+       [Average number of Uops issued by front-end when it issued something]
+  Instruction_Fetch_BW
+       [Total pipeline cost of instruction fetch bandwidth related bottlenecks]
+  IpTB
+       [Instruction per taken branch]
+  UpTB
+       [Instruction per taken branch]
+  tma_decoder0_alone
+       [This metric represents fraction of cycles where decoder-0 was the only
+        active decoder]
+  tma_dsb
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to DSB (decoded uop cache) fetch pipeline]
+  tma_fetch_bandwidth
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend bandwidth issues]
+  tma_mite
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to the MITE pipeline (the legacy decode pipeline)]
+
+FetchLat:
+  tma_branch_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers]
+  tma_dsb_switches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        switches from DSB to MITE pipelines]
+  tma_icache_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        instruction cache misses]
+  tma_itlb_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Instruction TLB (ITLB) misses]
+  tma_lcp
+       [This metric represents fraction of cycles CPU was stalled due to
+        Length Changing Prefixes (LCPs)]
+  tma_ms_switches
+       [This metric estimates the fraction of cycles when the CPU was stalled
+        due to switches of uop delivery to the Microcode Sequencer (MS)]
+  tma_unknown_branches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        new branch address clears]
+
+Flops:
+  FLOPc
+       [Floating Point Operations Per Cycle]
+  FP_Arith_Utilization
+       [Actual per-core usage of the Floating Point non-X87 execution units
+        (regardless of precision or vector-width)]
+  GFLOPs
+       [Giga Floating Point Operations Per Second]
+  IpArith
+       [Instructions per FP Arithmetic instruction (lower number means higher
+        occurrence rate)]
+  IpArith_AMX_F16
+       [Instructions per FP Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  IpArith_AVX128
+       [Instructions per FP Arithmetic AVX/SSE 128-bit instruction (lower
+        number means higher occurrence rate)]
+  IpArith_AVX256
+       [Instructions per FP Arithmetic AVX* 256-bit instruction (lower number
+        means higher occurrence rate)]
+  IpArith_AVX512
+       [Instructions per FP Arithmetic AVX 512-bit instruction (lower number
+        means higher occurrence rate)]
+  IpArith_Scalar_DP
+       [Instructions per FP Arithmetic Scalar Double-Precision instruction
+        (lower number means higher occurrence rate)]
+  IpArith_Scalar_SP
+       [Instructions per FP Arithmetic Scalar Single-Precision instruction
+        (lower number means higher occurrence rate)]
+  IpFLOP
+       [Instructions per Floating Point (FP) Operation (lower number means
+        higher occurrence rate)]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fp_scalar
+       [This metric approximates arithmetic floating-point (FP) scalar uops
+        fraction the CPU has retired]
+  tma_fp_vector
+       [This metric approximates arithmetic floating-point (FP) vector uops
+        fraction the CPU has retired aggregated across all vector widths]
+  tma_fp_vector_128b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 128-bit wide vectors]
+  tma_fp_vector_256b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 256-bit wide vectors]
+  tma_fp_vector_512b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 512-bit wide vectors]
+
+FpScalar:
+  IpArith_Scalar_DP
+       [Instructions per FP Arithmetic Scalar Double-Precision instruction
+        (lower number means higher occurrence rate)]
+  IpArith_Scalar_SP
+       [Instructions per FP Arithmetic Scalar Single-Precision instruction
+        (lower number means higher occurrence rate)]
+
+FpVector:
+  IpArith_AMX_F16
+       [Instructions per FP Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  IpArith_AVX128
+       [Instructions per FP Arithmetic AVX/SSE 128-bit instruction (lower
+        number means higher occurrence rate)]
+  IpArith_AVX256
+       [Instructions per FP Arithmetic AVX* 256-bit instruction (lower number
+        means higher occurrence rate)]
+  IpArith_AVX512
+       [Instructions per FP Arithmetic AVX 512-bit instruction (lower number
+        means higher occurrence rate)]
+
+Frontend:
+  Big_Code
+       [Total pipeline cost of instruction fetch related bottlenecks by large
+        code footprint programs (i-side cache; TLB and BTB misses)]
+  Instruction_Fetch_BW
+       [Total pipeline cost of instruction fetch bandwidth related bottlenecks]
+  IpTB
+       [Instruction per taken branch]
+  tma_fetch_bandwidth
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend bandwidth issues]
+  tma_fetch_latency
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend latency issues]
+
+HPC:
+  CPU_Utilization
+       [Average CPU Utilization]
+  DRAM_BW_Use
+       [Average external Memory Bandwidth Use for reads and writes [GB / sec]]
+  FP_Arith_Utilization
+       [Actual per-core usage of the Floating Point non-X87 execution units
+        (regardless of precision or vector-width)]
+  GFLOPs
+       [Giga Floating Point Operations Per Second]
+  TIOPS
+       [Tera Integer (matrix) Operations Per Second]
+  tma_amx_busy
+       [This metric estimates fraction of cycles where the Advanced Matrix
+        Extensions (AMX) execution engine was busy with tile (arithmetic)
+        operations]
+  tma_avx_assists
+       [This metric estimates fraction of slots the CPU retired uops as a
+        result of handing SSE to AVX* or AVX* to SSE transition Assists]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fp_arith
+       [This metric represents overall arithmetic floating-point (FP)
+        operations fraction the CPU has executed (retired)]
+  tma_fp_assists
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Floating Point (FP) Assists]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_shuffles
+       [This metric represents Shuffle (cross "vector lane" data transfers)
+        uops fraction the CPU has retired]
+
+IcMiss:
+  Big_Code
+       [Total pipeline cost of instruction fetch related bottlenecks by large
+        code footprint programs (i-side cache; TLB and BTB misses)]
+  tma_icache_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        instruction cache misses]
+
+InsType:
+  IpArith
+       [Instructions per FP Arithmetic instruction (lower number means higher
+        occurrence rate)]
+  IpArith_AMX_F16
+       [Instructions per FP Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  IpArith_AMX_Int8
+       [Instructions per Integer Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  IpArith_AVX128
+       [Instructions per FP Arithmetic AVX/SSE 128-bit instruction (lower
+        number means higher occurrence rate)]
+  IpArith_AVX256
+       [Instructions per FP Arithmetic AVX* 256-bit instruction (lower number
+        means higher occurrence rate)]
+  IpArith_AVX512
+       [Instructions per FP Arithmetic AVX 512-bit instruction (lower number
+        means higher occurrence rate)]
+  IpArith_Scalar_DP
+       [Instructions per FP Arithmetic Scalar Double-Precision instruction
+        (lower number means higher occurrence rate)]
+  IpArith_Scalar_SP
+       [Instructions per FP Arithmetic Scalar Single-Precision instruction
+        (lower number means higher occurrence rate)]
+  IpBranch
+       [Instructions per Branch (lower number means higher occurrence rate)]
+  IpFLOP
+       [Instructions per Floating Point (FP) Operation (lower number means
+        higher occurrence rate)]
+  IpLoad
+       [Instructions per Load (lower number means higher occurrence rate)]
+  IpStore
+       [Instructions per Store (lower number means higher occurrence rate)]
+
+IntVector:
+  IpArith_AMX_Int8
+       [Instructions per Integer Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  TIOPS
+       [Tera Integer (matrix) Operations Per Second]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_int_vector_128b
+       [This metric represents 128-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_int_vector_256b
+       [This metric represents 256-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+
+IoBW:
+  IO_Write_BW
+       [Average IO (network or disk) Bandwidth Use for Writes [GB / sec]]
+
+L2Evicts:
+  L2_Evictions_NonSilent_PKI
+       [Rate of non silent evictions from the L2 cache per Kilo instruction]
+  L2_Evictions_Silent_PKI
+       [Rate of silent evictions from the L2 cache per Kilo instruction where
+        the evicted lines are dropped (no writeback to L3 or memory)]
+
+MachineClears:
+  tma_clears_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Machine Clears]
+  tma_machine_clears
+       [This metric represents fraction of slots the CPU has wasted due to
+        Machine Clears]
+
+Mem:
+  CPI
+       [Cycles Per Instruction (per Logical Processor)]
+  DRAM_BW_Use
+       [Average external Memory Bandwidth Use for reads and writes [GB / sec]]
+  FB_HPKI
+       [Fill Buffer (FB) hits per kilo instructions for retired demand loads
+        (L1D misses that merge into ongoing miss-handling entries)]
+  IO_Write_BW
+       [Average IO (network or disk) Bandwidth Use for Writes [GB / sec]]
+  L1D_Cache_Fill_BW
+       [Average per-core data fill bandwidth to the L1 data cache [GB / sec]]
+  L1D_Cache_Fill_BW_1T
+       [Average per-thread data fill bandwidth to the L1 data cache [GB / sec]]
+  L1MPKI
+       [L1 cache true misses per kilo instruction for retired demand loads]
+  L1MPKI_Load
+       [L1 cache true misses per kilo instruction for all demand loads
+        (including speculative)]
+  L2HPKI_All
+       [L2 cache hits per kilo instruction for all request types (including
+        speculative)]
+  L2HPKI_Load
+       [L2 cache hits per kilo instruction for all demand loads (including
+        speculative)]
+  L2MPKI
+       [L2 cache true misses per kilo instruction for retired demand loads]
+  L2MPKI_All
+       [L2 cache ([RKL+] true) misses per kilo instruction for all request
+        types (including speculative)]
+  L2MPKI_Load
+       [L2 cache ([RKL+] true) misses per kilo instruction for all demand
+        loads (including speculative)]
+  L2_Cache_Fill_BW
+       [Average per-core data fill bandwidth to the L2 cache [GB / sec]]
+  L2_Cache_Fill_BW_1T
+       [Average per-thread data fill bandwidth to the L2 cache [GB / sec]]
+  L2_Evictions_NonSilent_PKI
+       [Rate of non silent evictions from the L2 cache per Kilo instruction]
+  L2_Evictions_Silent_PKI
+       [Rate of silent evictions from the L2 cache per Kilo instruction where
+        the evicted lines are dropped (no writeback to L3 or memory)]
+  L3MPKI
+       [L3 cache true misses per kilo instruction for retired demand loads]
+  L3_Cache_Access_BW
+       [Average per-core data access bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Access_BW_1T
+       [Average per-thread data access bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Fill_BW
+       [Average per-core data fill bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Fill_BW_1T
+       [Average per-thread data fill bandwidth to the L3 cache [GB / sec]]
+  Load_Miss_Real_Latency
+       [Actual Average Latency for L1 data-cache miss demand load operations
+        (in core cycles)]
+  MEM_DRAM_Read_Latency
+       [Average latency of data read request to external DRAM memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_PMM_Read_Latency
+       [Average latency of data read request to external 3D X-Point memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_Parallel_Reads
+       [Average number of parallel data read requests to external memory.
+        Accounts for demand loads and L1/L2 prefetches]
+  MEM_Read_Latency
+       [Average latency of data read request to external memory (in
+        nanoseconds). Accounts for demand loads and L1/L2 prefetches]
+  MLP
+       [Memory-Level-Parallelism (average number of L1 miss demand load when
+        there is at least one such miss. Per-Logical Processor)]
+  Memory_Bandwidth
+       [Total pipeline cost of (external) Memory Bandwidth related bottlenecks]
+  Memory_Data_TLBs
+       [Total pipeline cost of Memory Address Translation related bottlenecks
+        (data-side TLBs)]
+  Memory_Latency
+       [Total pipeline cost of Memory Latency related bottlenecks (external
+        memory and off-core caches)]
+  PMM_Read_BW
+       [Average 3DXP Memory Bandwidth Use for reads [GB / sec]]
+  PMM_Write_BW
+       [Average 3DXP Memory Bandwidth Use for Writes [GB / sec]]
+  Page_Walks_Utilization
+       [Utilization of the core's Page Walker(s) serving STLB misses triggered
+        by instruction/Load/Store accesses]
+
+MemoryBW:
+  DRAM_BW_Use
+       [Average external Memory Bandwidth Use for reads and writes [GB / sec]]
+  L1D_Cache_Fill_BW
+       [Average per-core data fill bandwidth to the L1 data cache [GB / sec]]
+  L1D_Cache_Fill_BW_1T
+       [Average per-thread data fill bandwidth to the L1 data cache [GB / sec]]
+  L2_Cache_Fill_BW
+       [Average per-core data fill bandwidth to the L2 cache [GB / sec]]
+  L2_Cache_Fill_BW_1T
+       [Average per-thread data fill bandwidth to the L2 cache [GB / sec]]
+  L3_Cache_Access_BW
+       [Average per-core data access bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Access_BW_1T
+       [Average per-thread data access bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Fill_BW
+       [Average per-core data fill bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Fill_BW_1T
+       [Average per-thread data fill bandwidth to the L3 cache [GB / sec]]
+  MEM_Parallel_Reads
+       [Average number of parallel data read requests to external memory.
+        Accounts for demand loads and L1/L2 prefetches]
+  MLP
+       [Memory-Level-Parallelism (average number of L1 miss demand load when
+        there is at least one such miss. Per-Logical Processor)]
+  Memory_Bandwidth
+       [Total pipeline cost of (external) Memory Bandwidth related bottlenecks]
+  PMM_Read_BW
+       [Average 3DXP Memory Bandwidth Use for reads [GB / sec]]
+  PMM_Write_BW
+       [Average 3DXP Memory Bandwidth Use for Writes [GB / sec]]
+  tma_fb_full
+       [This metric does a *rough estimation* of how often L1D Fill Buffer
+        unavailability limited additional L1D miss memory access requests to
+        proceed]
+  tma_mba_stalls
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to memory bandwidth Allocation feature (RDT's
+        memory bandwidth throttling)]
+  tma_mem_bandwidth
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to approaching bandwidth limits of external memory
+        (DRAM)]
+  tma_sq_full
+       [This metric measures fraction of cycles where the Super Queue (SQ) was
+        full taking into account all request-types and both hardware SMT
+        threads (Logical Processors)]
+  tma_streaming_stores
+       [This metric estimates how often CPU was stalled due to Streaming store
+        memory accesses; Streaming store optimize out a read request required
+        by RFO stores]
+
+MemoryBound:
+  Load_Miss_Real_Latency
+       [Actual Average Latency for L1 data-cache miss demand load operations
+        (in core cycles)]
+  MLP
+       [Memory-Level-Parallelism (average number of L1 miss demand load when
+        there is at least one such miss. Per-Logical Processor)]
+  tma_dram_bound
+       [This metric estimates how often the CPU was stalled on accesses to
+        external memory (DRAM) by loads]
+  tma_l1_bound
+       [This metric estimates how often the CPU was stalled without loads
+        missing the L1 data cache]
+  tma_l2_bound
+       [This metric estimates how often the CPU was stalled due to L2 cache
+        accesses by loads]
+  tma_l3_bound
+       [This metric estimates how often the CPU was stalled due to loads
+        accesses to L3 cache or contended with a sibling Core]
+  tma_pmm_bound
+       [This metric roughly estimates (based on idle latencies) how often the
+        CPU was stalled on accesses to external 3D-Xpoint (Crystal Ridge,
+        a.k.a]
+  tma_store_bound
+       [This metric estimates how often CPU was stalled due to RFO store
+        memory accesses; RFO store issue a read-for-ownership request before
+        the write]
+
+MemoryLat:
+  Load_Miss_Real_Latency
+       [Actual Average Latency for L1 data-cache miss demand load operations
+        (in core cycles)]
+  MEM_DRAM_Read_Latency
+       [Average latency of data read request to external DRAM memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_PMM_Read_Latency
+       [Average latency of data read request to external 3D X-Point memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_Read_Latency
+       [Average latency of data read request to external memory (in
+        nanoseconds). Accounts for demand loads and L1/L2 prefetches]
+  Memory_Latency
+       [Total pipeline cost of Memory Latency related bottlenecks (external
+        memory and off-core caches)]
+  tma_l3_hit_latency
+       [This metric represents fraction of cycles with demand load accesses
+        that hit the L3 cache under unloaded scenarios (possibly L3 latency
+        limited)]
+  tma_mem_latency
+       [This metric estimates fraction of cycles where the performance was
+        likely hurt due to latency from external memory (DRAM)]
+  tma_store_latency
+       [This metric estimates fraction of cycles the CPU spent handling L1D
+        store misses]
+
+MemoryTLB:
+  Big_Code
+       [Total pipeline cost of instruction fetch related bottlenecks by large
+        code footprint programs (i-side cache; TLB and BTB misses)]
+  Memory_Data_TLBs
+       [Total pipeline cost of Memory Address Translation related bottlenecks
+        (data-side TLBs)]
+  Page_Walks_Utilization
+       [Utilization of the core's Page Walker(s) serving STLB misses triggered
+        by instruction/Load/Store accesses]
+  tma_dtlb_load
+       [This metric roughly estimates the fraction of cycles where the Data
+        TLB (DTLB) was missed by load accesses]
+  tma_dtlb_store
+       [This metric roughly estimates the fraction of cycles spent handling
+        first-level data TLB store misses]
+  tma_itlb_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Instruction TLB (ITLB) misses]
+  tma_load_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the (first
+        level) DTLB was missed by load accesses, that later on hit in
+        second-level TLB (STLB)]
+  tma_load_stlb_miss
+       [This metric estimates the fraction of cycles where the Second-level
+        TLB (STLB) was missed by load accesses, performing a hardware page
+        walk]
+  tma_store_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the TLB was
+        missed by store accesses, hitting in the second-level TLB (STLB)]
+  tma_store_stlb_miss
+       [This metric estimates the fraction of cycles where the STLB was missed
+        by store accesses, performing a hardware page walk]
+
+MicroSeq:
+  tma_microcode_sequencer
+       [This metric represents fraction of slots the CPU was retiring uops
+        fetched by the Microcode Sequencer (MS) unit]
+  tma_ms_switches
+       [This metric estimates the fraction of cycles when the CPU was stalled
+        due to switches of uop delivery to the Microcode Sequencer (MS)]
+
+No_group:
+  cpi
+       [Cycles per instruction retired; indicating how much time each executed
+        instruction took; in units of cycles]
+  cpu_operating_frequency
+       [CPU operating frequency (in GHz)]
+  cpu_utilization
+       [Percentage of time spent in the active CPU power state C0]
+  dtlb_2nd_level_2mb_large_page_load_mpi
+       [Ratio of number of completed page walks (for 2 megabyte page sizes)
+        caused by demand data loads to the total number of completed
+        instructions]
+  dtlb_2nd_level_load_mpi
+       [Ratio of number of completed page walks (for all page sizes) caused by
+        demand data loads to the total number of completed instructions]
+  dtlb_2nd_level_store_mpi
+       [Ratio of number of completed page walks (for all page sizes) caused by
+        demand data stores to the total number of completed instructions]
+  io_bandwidth_disk_or_network_reads
+       [Bandwidth of IO writes that are initiated by end device controllers
+        that are writing memory to the CPU]
+  io_bandwidth_disk_or_network_writes
+       [Bandwidth of IO reads that are initiated by end device controllers
+        that are requesting memory from the CPU]
+  itlb_2nd_level_large_page_mpi
+       [Ratio of number of completed page walks (for 2 megabyte and 4 megabyte
+        page sizes) caused by a code fetch to the total number of completed
+        instructions]
+  itlb_2nd_level_mpi
+       [Ratio of number of completed page walks (for all page sizes) caused by
+        a code fetch to the total number of completed instructions]
+  l1_i_code_read_misses_with_prefetches_per_instr
+       [Ratio of number of code read requests missing in L1 instruction cache
+        (includes prefetches) to the total number of completed instructions]
+  l1d_demand_data_read_hits_per_instr
+       [Ratio of number of demand load requests hitting in L1 data cache to
+        the total number of completed instructions]
+  l1d_mpi
+       [Ratio of number of requests missing L1 data cache (includes data+rfo
+        w/ prefetches) to the total number of completed instructions]
+  l2_demand_code_mpi
+       [Ratio of number of code read request missing L2 cache to the total
+        number of completed instructions]
+  l2_demand_data_read_hits_per_instr
+       [Ratio of number of completed demand load requests hitting in L2 cache
+        to the total number of completed instructions]
+  l2_demand_data_read_mpi
+       [Ratio of number of completed data read request missing L2 cache to the
+        total number of completed instructions]
+  l2_mpi
+       [Ratio of number of requests missing L2 cache (includes code+data+rfo
+        w/ prefetches) to the total number of completed instructions]
+  llc_code_read_mpi_demand_plus_prefetch
+       [Ratio of number of code read requests missing last level core cache
+        (includes demand w/ prefetches) to the total number of completed
+        instructions]
+  llc_data_read_mpi_demand_plus_prefetch
+       [Ratio of number of data read requests missing last level core cache
+        (includes demand w/ prefetches) to the total number of completed
+        instructions]
+  llc_demand_data_read_miss_latency
+       [Average latency of a last level cache (LLC) demand data read miss
+        (read memory access) in nano seconds]
+  llc_demand_data_read_miss_latency_for_local_requests
+       [Average latency of a last level cache (LLC) demand data read miss
+        (read memory access) addressed to local memory in nano seconds]
+  llc_demand_data_read_miss_latency_for_remote_requests
+       [Average latency of a last level cache (LLC) demand data read miss
+        (read memory access) addressed to remote memory in nano seconds]
+  llc_demand_data_read_miss_to_dram_latency
+       [Average latency of a last level cache (LLC) demand data read miss
+        (read memory access) addressed to DRAM in nano seconds]
+  llc_demand_data_read_miss_to_pmem_latency
+       [Average latency of a last level cache (LLC) demand data read miss
+        (read memory access) addressed to Intel(R) Optane(TM) Persistent
+        Memory(PMEM) in nano seconds]
+  llc_miss_local_memory_bandwidth_read
+       [Bandwidth (MB/sec) of read requests that miss the last level cache
+        (LLC) and go to local memory]
+  llc_miss_local_memory_bandwidth_write
+       [Bandwidth (MB/sec) of write requests that miss the last level cache
+        (LLC) and go to local memory]
+  llc_miss_remote_memory_bandwidth_read
+       [Bandwidth (MB/sec) of read requests that miss the last level cache
+        (LLC) and go to remote memory]
+  llc_miss_remote_memory_bandwidth_write
+       [Bandwidth (MB/sec) of write requests that miss the last level cache
+        (LLC) and go to remote memory]
+  loads_per_instr
+       [The ratio of number of completed memory load instructions to the total
+        number completed instructions]
+  memory_bandwidth_read
+       [DDR memory read bandwidth (MB/sec)]
+  memory_bandwidth_total
+       [DDR memory bandwidth (MB/sec)]
+  memory_bandwidth_write
+       [DDR memory write bandwidth (MB/sec)]
+  numa_reads_addressed_to_local_dram
+       [Memory read that miss the last level cache (LLC) addressed to local
+        DRAM as a percentage of total memory read accesses, does not include
+        LLC prefetches]
+  numa_reads_addressed_to_remote_dram
+       [Memory reads that miss the last level cache (LLC) addressed to remote
+        DRAM as a percentage of total memory read accesses, does not include
+        LLC prefetches]
+  percent_uops_delivered_from_decoded_icache
+       [Uops delivered from decoded instruction cache (decoded stream buffer
+        or DSB) as a percent of total uops delivered to Instruction Decode
+        Queue]
+  percent_uops_delivered_from_legacy_decode_pipeline
+       [Uops delivered from legacy decode pipeline (Micro-instruction
+        Translation Engine or MITE) as a percent of total uops delivered to
+        Instruction Decode Queue]
+  percent_uops_delivered_from_microcode_sequencer
+       [Uops delivered from microcode sequencer (MS) as a percent of total
+        uops delivered to Instruction Decode Queue]
+  pmem_memory_bandwidth_read
+       [Intel(R) Optane(TM) Persistent Memory(PMEM) memory read bandwidth
+        (MB/sec)]
+  pmem_memory_bandwidth_total
+       [Intel(R) Optane(TM) Persistent Memory(PMEM) memory bandwidth (MB/sec)]
+  pmem_memory_bandwidth_write
+       [Intel(R) Optane(TM) Persistent Memory(PMEM) memory write bandwidth
+        (MB/sec)]
+  stores_per_instr
+       [The ratio of number of completed memory store instructions to the
+        total number completed instructions]
+  uncore_frequency
+       [Uncore operating frequency in GHz]
+  upi_data_transmit_bw
+       [Intel(R) Ultra Path Interconnect (UPI) data transmit bandwidth
+        (MB/sec)]
+
+OS:
+  IpFarBranch
+       [Instructions per Far Branch ( Far Branches apply upon transition from
+        application to operating system, handling interrupts, exceptions)
+        [lower number means higher occurrence rate]]
+  Kernel_CPI
+       [Cycles Per Instruction for the Operating System (OS) Kernel mode]
+  Kernel_Utilization
+       [Fraction of cycles spent in the Operating System (OS) Kernel mode]
+
+Offcore:
+  L2MPKI_All
+       [L2 cache ([RKL+] true) misses per kilo instruction for all request
+        types (including speculative)]
+  L3_Cache_Access_BW
+       [Average per-core data access bandwidth to the L3 cache [GB / sec]]
+  L3_Cache_Access_BW_1T
+       [Average per-thread data access bandwidth to the L3 cache [GB / sec]]
+  Memory_Bandwidth
+       [Total pipeline cost of (external) Memory Bandwidth related bottlenecks]
+  Memory_Data_TLBs
+       [Total pipeline cost of Memory Address Translation related bottlenecks
+        (data-side TLBs)]
+  Memory_Latency
+       [Total pipeline cost of Memory Latency related bottlenecks (external
+        memory and off-core caches)]
+  tma_contested_accesses
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to contested accesses]
+  tma_data_sharing
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to data-sharing accesses]
+  tma_false_sharing
+       [This metric roughly estimates how often CPU was handling
+        synchronizations due to False Sharing]
+  tma_lock_latency
+       [This metric represents fraction of cycles the CPU spent handling cache
+        misses due to lock operations]
+  tma_mba_stalls
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to memory bandwidth Allocation feature (RDT's
+        memory bandwidth throttling)]
+  tma_mem_bandwidth
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to approaching bandwidth limits of external memory
+        (DRAM)]
+  tma_mem_latency
+       [This metric estimates fraction of cycles where the performance was
+        likely hurt due to latency from external memory (DRAM)]
+  tma_remote_cache
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote cache in other sockets including
+        synchronizations issues]
+  tma_sq_full
+       [This metric measures fraction of cycles where the Super Queue (SQ) was
+        full taking into account all request-types and both hardware SMT
+        threads (Logical Processors)]
+  tma_store_latency
+       [This metric estimates fraction of cycles the CPU spent handling L1D
+        store misses]
+  tma_streaming_stores
+       [This metric estimates how often CPU was stalled due to Streaming store
+        memory accesses; Streaming store optimize out a read request required
+        by RFO stores]
+
+PGO:
+  BpTkBranch
+       [Branch instructions per taken branch]
+  Cond_NT
+       [Fraction of branches that are non-taken conditionals]
+  Cond_TK
+       [Fraction of branches that are taken conditionals]
+  IpCall
+       [Instructions per (near) call (lower number means higher occurrence
+        rate)]
+  IpTB
+       [Instruction per taken branch]
+  tma_frontend_bound
+       [This category represents fraction of slots where the processor's
+        Frontend undersupplies its Backend]
+
+Pipeline:
+  CLKS
+       [Per-Logical Processor actual clocks when the Logical Processor is
+        active]
+  CPI
+       [Cycles Per Instruction (per Logical Processor)]
+  Execute
+  Execute_per_Issue
+       [The ratio of Executed- by Issued-Uops]
+  ILP
+       [Instruction-Level-Parallelism (average number of uops executed when
+        there is execution) per-core]
+  IpAssist
+       [Instructions per a microcode Assist invocation. See Assists tree node
+        for details (lower number means higher occurrence rate)]
+  Retire
+       [Average number of Uops retired in cycles where at least one uop has
+        retired]
+  Strings_Cycles
+       [Estimated fraction of retirement-cycles dealing with repeat
+        instructions]
+  UPI
+       [Uops Per Instruction]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fused_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        fused instructions -- where one uop can represent multiple contiguous
+        instructions]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_int_operations
+       [This metric represents overall Integer (Int) select operations
+        fraction the CPU has executed (retired)]
+  tma_int_vector_128b
+       [This metric represents 128-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_int_vector_256b
+       [This metric represents 256-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_memory_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        memory operations -- uops for memory load or store accesses]
+  tma_non_fused_branches
+       [This metric represents fraction of slots where the CPU was retiring
+        branch instructions that were not fused]
+  tma_nop_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        NOP (no op) instructions]
+  tma_other_light_ops
+       [This metric represents the remaining light uops fraction the CPU has
+        executed - remaining means not covered by other sibling nodes. May
+        undercount due to FMA double counting]
+  tma_shuffles
+       [This metric represents Shuffle (cross "vector lane" data transfers)
+        uops fraction the CPU has retired]
+
+PortsUtil:
+  Execute
+  ILP
+       [Instruction-Level-Parallelism (average number of uops executed when
+        there is execution) per-core]
+  tma_ports_utilization
+       [This metric estimates fraction of cycles the CPU performance was
+        potentially limited due to Core computation issues (non
+        divider-related)]
+  tma_ports_utilized_0
+       [This metric represents fraction of cycles CPU executed no uops on any
+        execution port (Logical Processor cycles since ICL, Physical Core
+        cycles otherwise)]
+  tma_ports_utilized_1
+       [This metric represents fraction of cycles where the CPU executed total
+        of 1 uop per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+  tma_ports_utilized_2
+       [This metric represents fraction of cycles CPU executed total of 2 uops
+        per cycle on all execution ports (Logical Processor cycles since ICL,
+        Physical Core cycles otherwise)]
+  tma_ports_utilized_3m
+       [This metric represents fraction of cycles CPU executed total of 3 or
+        more uops per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+
+Power:
+  Average_Frequency
+       [Measured Average Frequency for unhalted processors [GHz]]
+  C1_Core_Residency
+       [C1 residency percent per core]
+  C2_Pkg_Residency
+       [C2 residency percent per package]
+  C6_Core_Residency
+       [C6 residency percent per core]
+  C6_Pkg_Residency
+       [C6 residency percent per package]
+  Turbo_Utilization
+       [Average Frequency Utilization relative nominal frequency]
+
+Prefetches:
+  IpSWPF
+       [Instructions per Software prefetch instruction (of any type:
+        NTA/T0/T1/T2/Prefetch) (lower number means higher occurrence rate)]
+
+Ret:
+  Branching_Overhead
+       [Total pipeline cost of branch related instructions (used for program
+        control-flow including function calls)]
+  CoreIPC
+       [Instructions Per Cycle across hyper-threads (per physical core)]
+  FLOPc
+       [Floating Point Operations Per Cycle]
+  IPC
+       [Instructions Per Cycle (per Logical Processor)]
+  IpAssist
+       [Instructions per a microcode Assist invocation. See Assists tree node
+        for details (lower number means higher occurrence rate)]
+  Retire
+       [Average number of Uops retired in cycles where at least one uop has
+        retired]
+  Strings_Cycles
+       [Estimated fraction of retirement-cycles dealing with repeat
+        instructions]
+  UPI
+       [Uops Per Instruction]
+
+Retire:
+  IpAssist
+       [Instructions per a microcode Assist invocation. See Assists tree node
+        for details (lower number means higher occurrence rate)]
+  UPI
+       [Uops Per Instruction]
+  tma_heavy_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        heavy-weight operations -- instructions that require two or more uops
+        or microcoded sequences]
+  tma_light_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        light-weight operations -- instructions that require no more than one
+        uop (micro-operation)]
+
+SMT:
+  CORE_CLKS
+       [Core actual clocks when any Logical Processor is active on the
+        Physical Core]
+  CoreIPC
+       [Instructions Per Cycle across hyper-threads (per physical core)]
+  Core_Bound_Likely
+       [Probability of Core Bound bottleneck hidden by SMT-profiling artifacts]
+  Execute
+  SMT_2T_Utilization
+       [Fraction of cycles where both hardware Logical Processors were active]
+  Slots_Utilization
+       [Fraction of Physical Core issue-slots utilized by this Logical
+        Processor]
+
+Server:
+  IO_Write_BW
+       [Average IO (network or disk) Bandwidth Use for Writes [GB / sec]]
+  IpArith_AMX_F16
+       [Instructions per FP Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  IpArith_AMX_Int8
+       [Instructions per Integer Arithmetic AMX operation (lower number means
+        higher occurrence rate)]
+  L2_Evictions_NonSilent_PKI
+       [Rate of non silent evictions from the L2 cache per Kilo instruction]
+  L2_Evictions_Silent_PKI
+       [Rate of silent evictions from the L2 cache per Kilo instruction where
+        the evicted lines are dropped (no writeback to L3 or memory)]
+  MEM_DRAM_Read_Latency
+       [Average latency of data read request to external DRAM memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_PMM_Read_Latency
+       [Average latency of data read request to external 3D X-Point memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  PMM_Read_BW
+       [Average 3DXP Memory Bandwidth Use for reads [GB / sec]]
+  PMM_Write_BW
+       [Average 3DXP Memory Bandwidth Use for Writes [GB / sec]]
+  TIOPS
+       [Tera Integer (matrix) Operations Per Second]
+  tma_amx_busy
+       [This metric estimates fraction of cycles where the Advanced Matrix
+        Extensions (AMX) execution engine was busy with tile (arithmetic)
+        operations]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_local_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from local memory]
+  tma_mba_stalls
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to memory bandwidth Allocation feature (RDT's
+        memory bandwidth throttling)]
+  tma_pmm_bound
+       [This metric roughly estimates (based on idle latencies) how often the
+        CPU was stalled on accesses to external 3D-Xpoint (Crystal Ridge,
+        a.k.a]
+  tma_remote_cache
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote cache in other sockets including
+        synchronizations issues]
+  tma_remote_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote memory]
+
+Snoop:
+  tma_contested_accesses
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to contested accesses]
+  tma_data_sharing
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to data-sharing accesses]
+  tma_false_sharing
+       [This metric roughly estimates how often CPU was handling
+        synchronizations due to False Sharing]
+  tma_remote_cache
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote cache in other sockets including
+        synchronizations issues]
+  tma_remote_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote memory]
+
+SoC:
+  DRAM_BW_Use
+       [Average external Memory Bandwidth Use for reads and writes [GB / sec]]
+  IO_Write_BW
+       [Average IO (network or disk) Bandwidth Use for Writes [GB / sec]]
+  MEM_DRAM_Read_Latency
+       [Average latency of data read request to external DRAM memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_PMM_Read_Latency
+       [Average latency of data read request to external 3D X-Point memory [in
+        nanoseconds]. Accounts for demand loads and L1/L2 data-read prefetches]
+  MEM_Parallel_Reads
+       [Average number of parallel data read requests to external memory.
+        Accounts for demand loads and L1/L2 prefetches]
+  MEM_Read_Latency
+       [Average latency of data read request to external memory (in
+        nanoseconds). Accounts for demand loads and L1/L2 prefetches]
+  PMM_Read_BW
+       [Average 3DXP Memory Bandwidth Use for reads [GB / sec]]
+  PMM_Write_BW
+       [Average 3DXP Memory Bandwidth Use for Writes [GB / sec]]
+  Socket_CLKS
+       [Socket actual clocks when any core is active on that socket]
+  UNCORE_FREQ
+       [Uncore frequency per die [GHZ]]
+
+Summary:
+  Average_Frequency
+       [Measured Average Frequency for unhalted processors [GHz]]
+  CPU_Utilization
+       [Average CPU Utilization]
+  IPC
+       [Instructions Per Cycle (per Logical Processor)]
+  Instructions
+       [Total number of retired Instructions Sample with:
+        INST_RETIRED.PREC_DIST]
+
+TmaL3mem:
+  tma_dram_bound
+       [This metric estimates how often the CPU was stalled on accesses to
+        external memory (DRAM) by loads]
+  tma_l1_bound
+       [This metric estimates how often the CPU was stalled without loads
+        missing the L1 data cache]
+  tma_l2_bound
+       [This metric estimates how often the CPU was stalled due to L2 cache
+        accesses by loads]
+  tma_l3_bound
+       [This metric estimates how often the CPU was stalled due to loads
+        accesses to L3 cache or contended with a sibling Core]
+  tma_pmm_bound
+       [This metric roughly estimates (based on idle latencies) how often the
+        CPU was stalled on accesses to external 3D-Xpoint (Crystal Ridge,
+        a.k.a]
+  tma_store_bound
+       [This metric estimates how often CPU was stalled due to RFO store
+        memory accesses; RFO store issue a read-for-ownership request before
+        the write]
+
+TopdownL1:
+  tma_backend_bound
+       [This category represents fraction of slots where no uops are being
+        delivered due to a lack of required resources for accepting new uops
+        in the Backend]
+  tma_bad_speculation
+       [This category represents fraction of slots wasted due to incorrect
+        speculations]
+  tma_frontend_bound
+       [This category represents fraction of slots where the processor's
+        Frontend undersupplies its Backend]
+  tma_retiring
+       [This category represents fraction of slots utilized by useful work
+        i.e. issued uops that eventually get retired]
+
+TopdownL2:
+  tma_branch_mispredicts
+       [This metric represents fraction of slots the CPU has wasted due to
+        Branch Misprediction]
+  tma_core_bound
+       [This metric represents fraction of slots where Core non-memory issues
+        were of a bottleneck]
+  tma_fetch_bandwidth
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend bandwidth issues]
+  tma_fetch_latency
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend latency issues]
+  tma_heavy_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        heavy-weight operations -- instructions that require two or more uops
+        or microcoded sequences]
+  tma_light_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        light-weight operations -- instructions that require no more than one
+        uop (micro-operation)]
+  tma_machine_clears
+       [This metric represents fraction of slots the CPU has wasted due to
+        Machine Clears]
+  tma_memory_bound
+       [This metric represents fraction of slots the Memory subsystem within
+        the Backend was a bottleneck]
+
+TopdownL3:
+  tma_branch_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers]
+  tma_divider
+       [This metric represents fraction of cycles where the Divider unit was
+        active]
+  tma_dram_bound
+       [This metric estimates how often the CPU was stalled on accesses to
+        external memory (DRAM) by loads]
+  tma_dsb
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to DSB (decoded uop cache) fetch pipeline]
+  tma_dsb_switches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        switches from DSB to MITE pipelines]
+  tma_few_uops_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        instructions that that are decoder into two or up to ([SNB+] four;
+        [ADL+] five) uops]
+  tma_fp_arith
+       [This metric represents overall arithmetic floating-point (FP)
+        operations fraction the CPU has executed (retired)]
+  tma_fused_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        fused instructions -- where one uop can represent multiple contiguous
+        instructions]
+  tma_icache_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        instruction cache misses]
+  tma_int_operations
+       [This metric represents overall Integer (Int) select operations
+        fraction the CPU has executed (retired)]
+  tma_itlb_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Instruction TLB (ITLB) misses]
+  tma_l1_bound
+       [This metric estimates how often the CPU was stalled without loads
+        missing the L1 data cache]
+  tma_l2_bound
+       [This metric estimates how often the CPU was stalled due to L2 cache
+        accesses by loads]
+  tma_l3_bound
+       [This metric estimates how often the CPU was stalled due to loads
+        accesses to L3 cache or contended with a sibling Core]
+  tma_lcp
+       [This metric represents fraction of cycles CPU was stalled due to
+        Length Changing Prefixes (LCPs)]
+  tma_memory_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        memory operations -- uops for memory load or store accesses]
+  tma_microcode_sequencer
+       [This metric represents fraction of slots the CPU was retiring uops
+        fetched by the Microcode Sequencer (MS) unit]
+  tma_mite
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to the MITE pipeline (the legacy decode pipeline)]
+  tma_ms_switches
+       [This metric estimates the fraction of cycles when the CPU was stalled
+        due to switches of uop delivery to the Microcode Sequencer (MS)]
+  tma_non_fused_branches
+       [This metric represents fraction of slots where the CPU was retiring
+        branch instructions that were not fused]
+  tma_nop_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        NOP (no op) instructions]
+  tma_other_light_ops
+       [This metric represents the remaining light uops fraction the CPU has
+        executed - remaining means not covered by other sibling nodes. May
+        undercount due to FMA double counting]
+  tma_pmm_bound
+       [This metric roughly estimates (based on idle latencies) how often the
+        CPU was stalled on accesses to external 3D-Xpoint (Crystal Ridge,
+        a.k.a]
+  tma_ports_utilization
+       [This metric estimates fraction of cycles the CPU performance was
+        potentially limited due to Core computation issues (non
+        divider-related)]
+  tma_store_bound
+       [This metric estimates how often CPU was stalled due to RFO store
+        memory accesses; RFO store issue a read-for-ownership request before
+        the write]
+
+TopdownL4:
+  tma_assists
+       [This metric estimates fraction of slots the CPU retired uops delivered
+        by the Microcode_Sequencer as a result of Assists]
+  tma_cisc
+       [This metric estimates fraction of cycles the CPU retired uops
+        originated from CISC (complex instruction set computer) instruction]
+  tma_clears_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Machine Clears]
+  tma_contested_accesses
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to contested accesses]
+  tma_data_sharing
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to data-sharing accesses]
+  tma_decoder0_alone
+       [This metric represents fraction of cycles where decoder-0 was the only
+        active decoder]
+  tma_dtlb_load
+       [This metric roughly estimates the fraction of cycles where the Data
+        TLB (DTLB) was missed by load accesses]
+  tma_dtlb_store
+       [This metric roughly estimates the fraction of cycles spent handling
+        first-level data TLB store misses]
+  tma_false_sharing
+       [This metric roughly estimates how often CPU was handling
+        synchronizations due to False Sharing]
+  tma_fb_full
+       [This metric does a *rough estimation* of how often L1D Fill Buffer
+        unavailability limited additional L1D miss memory access requests to
+        proceed]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fp_scalar
+       [This metric approximates arithmetic floating-point (FP) scalar uops
+        fraction the CPU has retired]
+  tma_fp_vector
+       [This metric approximates arithmetic floating-point (FP) vector uops
+        fraction the CPU has retired aggregated across all vector widths]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_int_vector_128b
+       [This metric represents 128-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_int_vector_256b
+       [This metric represents 256-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_l3_hit_latency
+       [This metric represents fraction of cycles with demand load accesses
+        that hit the L3 cache under unloaded scenarios (possibly L3 latency
+        limited)]
+  tma_lock_latency
+       [This metric represents fraction of cycles the CPU spent handling cache
+        misses due to lock operations]
+  tma_mem_bandwidth
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to approaching bandwidth limits of external memory
+        (DRAM)]
+  tma_mem_latency
+       [This metric estimates fraction of cycles where the performance was
+        likely hurt due to latency from external memory (DRAM)]
+  tma_mispredicts_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Branch Misprediction at execution stage]
+  tma_ports_utilized_0
+       [This metric represents fraction of cycles CPU executed no uops on any
+        execution port (Logical Processor cycles since ICL, Physical Core
+        cycles otherwise)]
+  tma_ports_utilized_1
+       [This metric represents fraction of cycles where the CPU executed total
+        of 1 uop per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+  tma_ports_utilized_2
+       [This metric represents fraction of cycles CPU executed total of 2 uops
+        per cycle on all execution ports (Logical Processor cycles since ICL,
+        Physical Core cycles otherwise)]
+  tma_ports_utilized_3m
+       [This metric represents fraction of cycles CPU executed total of 3 or
+        more uops per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+  tma_shuffles
+       [This metric represents Shuffle (cross "vector lane" data transfers)
+        uops fraction the CPU has retired]
+  tma_split_loads
+       [This metric estimates fraction of cycles handling memory load split
+        accesses - load that cross 64-byte cache line boundary]
+  tma_split_stores
+       [This metric represents rate of split store accesses]
+  tma_sq_full
+       [This metric measures fraction of cycles where the Super Queue (SQ) was
+        full taking into account all request-types and both hardware SMT
+        threads (Logical Processors)]
+  tma_store_fwd_blk
+       [This metric roughly estimates fraction of cycles when the memory
+        subsystem had loads blocked since they could not forward data from
+        earlier (in program order) overlapping stores]
+  tma_store_latency
+       [This metric estimates fraction of cycles the CPU spent handling L1D
+        store misses]
+  tma_streaming_stores
+       [This metric estimates how often CPU was stalled due to Streaming store
+        memory accesses; Streaming store optimize out a read request required
+        by RFO stores]
+  tma_unknown_branches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        new branch address clears]
+  tma_x87_use
+       [This metric serves as an approximation of legacy x87 usage]
+
+TopdownL5:
+  tma_alu_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution ports for ALU operations]
+  tma_amx_busy
+       [This metric estimates fraction of cycles where the Advanced Matrix
+        Extensions (AMX) execution engine was busy with tile (arithmetic)
+        operations]
+  tma_avx_assists
+       [This metric estimates fraction of slots the CPU retired uops as a
+        result of handing SSE to AVX* or AVX* to SSE transition Assists]
+  tma_fp_assists
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Floating Point (FP) Assists]
+  tma_fp_vector_128b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 128-bit wide vectors]
+  tma_fp_vector_256b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 256-bit wide vectors]
+  tma_fp_vector_512b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 512-bit wide vectors]
+  tma_load_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port for Load operations]
+  tma_load_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the (first
+        level) DTLB was missed by load accesses, that later on hit in
+        second-level TLB (STLB)]
+  tma_load_stlb_miss
+       [This metric estimates the fraction of cycles where the Second-level
+        TLB (STLB) was missed by load accesses, performing a hardware page
+        walk]
+  tma_local_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from local memory]
+  tma_mba_stalls
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to memory bandwidth Allocation feature (RDT's
+        memory bandwidth throttling)]
+  tma_mixing_vectors
+       [The Mixing_Vectors metric gives the percentage of injected blend uops
+        out of all uops issued]
+  tma_page_faults
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Page Faults]
+  tma_remote_cache
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote cache in other sockets including
+        synchronizations issues]
+  tma_remote_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote memory]
+  tma_serializing_operation
+       [This metric represents fraction of cycles the CPU issue-pipeline was
+        stalled due to serializing operations]
+  tma_store_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port for Store operations]
+  tma_store_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the TLB was
+        missed by store accesses, hitting in the second-level TLB (STLB)]
+  tma_store_stlb_miss
+       [This metric estimates the fraction of cycles where the STLB was missed
+        by store accesses, performing a hardware page walk]
+
+TopdownL6:
+  tma_memory_fence
+       [This metric represents fraction of cycles the CPU was stalled due to
+        LFENCE Instructions]
+  tma_port_0
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 0 ([SNB+] ALU; [HSW+] ALU and 2nd branch)]
+  tma_port_1
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 1 (ALU)]
+  tma_port_6
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 6 ([HSW+]Primary Branch and simple ALU)]
+  tma_slow_pause
+       [This metric represents fraction of cycles the CPU was stalled due to
+        PAUSE Instructions]
+
+tma_L1_group:
+  CoreIPC
+       [Instructions Per Cycle across hyper-threads (per physical core)]
+  Instructions
+       [Total number of retired Instructions Sample with:
+        INST_RETIRED.PREC_DIST]
+  SLOTS
+       [Total issue-pipeline slots (per-Physical Core till ICL; per-Logical
+        Processor ICL onward)]
+  Slots_Utilization
+       [Fraction of Physical Core issue-slots utilized by this Logical
+        Processor]
+  tma_backend_bound
+       [This category represents fraction of slots where no uops are being
+        delivered due to a lack of required resources for accepting new uops
+        in the Backend]
+  tma_bad_speculation
+       [This category represents fraction of slots wasted due to incorrect
+        speculations]
+  tma_frontend_bound
+       [This category represents fraction of slots where the processor's
+        Frontend undersupplies its Backend]
+  tma_retiring
+       [This category represents fraction of slots utilized by useful work
+        i.e. issued uops that eventually get retired]
+
+tma_L2_group:
+  tma_branch_mispredicts
+       [This metric represents fraction of slots the CPU has wasted due to
+        Branch Misprediction]
+  tma_core_bound
+       [This metric represents fraction of slots where Core non-memory issues
+        were of a bottleneck]
+  tma_fetch_bandwidth
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend bandwidth issues]
+  tma_fetch_latency
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend latency issues]
+  tma_heavy_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        heavy-weight operations -- instructions that require two or more uops
+        or microcoded sequences]
+  tma_light_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        light-weight operations -- instructions that require no more than one
+        uop (micro-operation)]
+  tma_machine_clears
+       [This metric represents fraction of slots the CPU has wasted due to
+        Machine Clears]
+  tma_memory_bound
+       [This metric represents fraction of slots the Memory subsystem within
+        the Backend was a bottleneck]
+
+tma_L3_group:
+  tma_branch_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers]
+  tma_divider
+       [This metric represents fraction of cycles where the Divider unit was
+        active]
+  tma_dram_bound
+       [This metric estimates how often the CPU was stalled on accesses to
+        external memory (DRAM) by loads]
+  tma_dsb
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to DSB (decoded uop cache) fetch pipeline]
+  tma_dsb_switches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        switches from DSB to MITE pipelines]
+  tma_few_uops_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        instructions that that are decoder into two or up to ([SNB+] four;
+        [ADL+] five) uops]
+  tma_fp_arith
+       [This metric represents overall arithmetic floating-point (FP)
+        operations fraction the CPU has executed (retired)]
+  tma_fused_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        fused instructions -- where one uop can represent multiple contiguous
+        instructions]
+  tma_icache_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        instruction cache misses]
+  tma_int_operations
+       [This metric represents overall Integer (Int) select operations
+        fraction the CPU has executed (retired)]
+  tma_itlb_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Instruction TLB (ITLB) misses]
+  tma_l1_bound
+       [This metric estimates how often the CPU was stalled without loads
+        missing the L1 data cache]
+  tma_l2_bound
+       [This metric estimates how often the CPU was stalled due to L2 cache
+        accesses by loads]
+  tma_l3_bound
+       [This metric estimates how often the CPU was stalled due to loads
+        accesses to L3 cache or contended with a sibling Core]
+  tma_lcp
+       [This metric represents fraction of cycles CPU was stalled due to
+        Length Changing Prefixes (LCPs)]
+  tma_memory_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        memory operations -- uops for memory load or store accesses]
+  tma_microcode_sequencer
+       [This metric represents fraction of slots the CPU was retiring uops
+        fetched by the Microcode Sequencer (MS) unit]
+  tma_mite
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to the MITE pipeline (the legacy decode pipeline)]
+  tma_ms_switches
+       [This metric estimates the fraction of cycles when the CPU was stalled
+        due to switches of uop delivery to the Microcode Sequencer (MS)]
+  tma_non_fused_branches
+       [This metric represents fraction of slots where the CPU was retiring
+        branch instructions that were not fused]
+  tma_nop_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        NOP (no op) instructions]
+  tma_other_light_ops
+       [This metric represents the remaining light uops fraction the CPU has
+        executed - remaining means not covered by other sibling nodes. May
+        undercount due to FMA double counting]
+  tma_pmm_bound
+       [This metric roughly estimates (based on idle latencies) how often the
+        CPU was stalled on accesses to external 3D-Xpoint (Crystal Ridge,
+        a.k.a]
+  tma_ports_utilization
+       [This metric estimates fraction of cycles the CPU performance was
+        potentially limited due to Core computation issues (non
+        divider-related)]
+  tma_store_bound
+       [This metric estimates how often CPU was stalled due to RFO store
+        memory accesses; RFO store issue a read-for-ownership request before
+        the write]
+
+tma_L4_group:
+  tma_assists
+       [This metric estimates fraction of slots the CPU retired uops delivered
+        by the Microcode_Sequencer as a result of Assists]
+  tma_cisc
+       [This metric estimates fraction of cycles the CPU retired uops
+        originated from CISC (complex instruction set computer) instruction]
+  tma_clears_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Machine Clears]
+  tma_contested_accesses
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to contested accesses]
+  tma_data_sharing
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to data-sharing accesses]
+  tma_decoder0_alone
+       [This metric represents fraction of cycles where decoder-0 was the only
+        active decoder]
+  tma_dtlb_load
+       [This metric roughly estimates the fraction of cycles where the Data
+        TLB (DTLB) was missed by load accesses]
+  tma_dtlb_store
+       [This metric roughly estimates the fraction of cycles spent handling
+        first-level data TLB store misses]
+  tma_false_sharing
+       [This metric roughly estimates how often CPU was handling
+        synchronizations due to False Sharing]
+  tma_fb_full
+       [This metric does a *rough estimation* of how often L1D Fill Buffer
+        unavailability limited additional L1D miss memory access requests to
+        proceed]
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fp_scalar
+       [This metric approximates arithmetic floating-point (FP) scalar uops
+        fraction the CPU has retired]
+  tma_fp_vector
+       [This metric approximates arithmetic floating-point (FP) vector uops
+        fraction the CPU has retired aggregated across all vector widths]
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_int_vector_128b
+       [This metric represents 128-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_int_vector_256b
+       [This metric represents 256-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_l3_hit_latency
+       [This metric represents fraction of cycles with demand load accesses
+        that hit the L3 cache under unloaded scenarios (possibly L3 latency
+        limited)]
+  tma_lock_latency
+       [This metric represents fraction of cycles the CPU spent handling cache
+        misses due to lock operations]
+  tma_mem_bandwidth
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to approaching bandwidth limits of external memory
+        (DRAM)]
+  tma_mem_latency
+       [This metric estimates fraction of cycles where the performance was
+        likely hurt due to latency from external memory (DRAM)]
+  tma_mispredicts_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Branch Misprediction at execution stage]
+  tma_ports_utilized_0
+       [This metric represents fraction of cycles CPU executed no uops on any
+        execution port (Logical Processor cycles since ICL, Physical Core
+        cycles otherwise)]
+  tma_ports_utilized_1
+       [This metric represents fraction of cycles where the CPU executed total
+        of 1 uop per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+  tma_ports_utilized_2
+       [This metric represents fraction of cycles CPU executed total of 2 uops
+        per cycle on all execution ports (Logical Processor cycles since ICL,
+        Physical Core cycles otherwise)]
+  tma_ports_utilized_3m
+       [This metric represents fraction of cycles CPU executed total of 3 or
+        more uops per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+  tma_shuffles
+       [This metric represents Shuffle (cross "vector lane" data transfers)
+        uops fraction the CPU has retired]
+  tma_split_loads
+       [This metric estimates fraction of cycles handling memory load split
+        accesses - load that cross 64-byte cache line boundary]
+  tma_split_stores
+       [This metric represents rate of split store accesses]
+  tma_sq_full
+       [This metric measures fraction of cycles where the Super Queue (SQ) was
+        full taking into account all request-types and both hardware SMT
+        threads (Logical Processors)]
+  tma_store_fwd_blk
+       [This metric roughly estimates fraction of cycles when the memory
+        subsystem had loads blocked since they could not forward data from
+        earlier (in program order) overlapping stores]
+  tma_store_latency
+       [This metric estimates fraction of cycles the CPU spent handling L1D
+        store misses]
+  tma_streaming_stores
+       [This metric estimates how often CPU was stalled due to Streaming store
+        memory accesses; Streaming store optimize out a read request required
+        by RFO stores]
+  tma_unknown_branches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        new branch address clears]
+  tma_x87_use
+       [This metric serves as an approximation of legacy x87 usage]
+
+tma_L5_group:
+  tma_alu_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution ports for ALU operations]
+  tma_amx_busy
+       [This metric estimates fraction of cycles where the Advanced Matrix
+        Extensions (AMX) execution engine was busy with tile (arithmetic)
+        operations]
+  tma_avx_assists
+       [This metric estimates fraction of slots the CPU retired uops as a
+        result of handing SSE to AVX* or AVX* to SSE transition Assists]
+  tma_fp_assists
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Floating Point (FP) Assists]
+  tma_fp_vector_128b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 128-bit wide vectors]
+  tma_fp_vector_256b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 256-bit wide vectors]
+  tma_fp_vector_512b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 512-bit wide vectors]
+  tma_load_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port for Load operations]
+  tma_load_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the (first
+        level) DTLB was missed by load accesses, that later on hit in
+        second-level TLB (STLB)]
+  tma_load_stlb_miss
+       [This metric estimates the fraction of cycles where the Second-level
+        TLB (STLB) was missed by load accesses, performing a hardware page
+        walk]
+  tma_local_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from local memory]
+  tma_mba_stalls
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to memory bandwidth Allocation feature (RDT's
+        memory bandwidth throttling)]
+  tma_mixing_vectors
+       [The Mixing_Vectors metric gives the percentage of injected blend uops
+        out of all uops issued]
+  tma_page_faults
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Page Faults]
+  tma_remote_cache
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote cache in other sockets including
+        synchronizations issues]
+  tma_remote_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote memory]
+  tma_serializing_operation
+       [This metric represents fraction of cycles the CPU issue-pipeline was
+        stalled due to serializing operations]
+  tma_store_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port for Store operations]
+  tma_store_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the TLB was
+        missed by store accesses, hitting in the second-level TLB (STLB)]
+  tma_store_stlb_miss
+       [This metric estimates the fraction of cycles where the STLB was missed
+        by store accesses, performing a hardware page walk]
+
+tma_L6_group:
+  tma_memory_fence
+       [This metric represents fraction of cycles the CPU was stalled due to
+        LFENCE Instructions]
+  tma_port_0
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 0 ([SNB+] ALU; [HSW+] ALU and 2nd branch)]
+  tma_port_1
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 1 (ALU)]
+  tma_port_6
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 6 ([HSW+]Primary Branch and simple ALU)]
+  tma_slow_pause
+       [This metric represents fraction of cycles the CPU was stalled due to
+        PAUSE Instructions]
+
+tma_alu_op_utilization_group:
+  tma_port_0
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 0 ([SNB+] ALU; [HSW+] ALU and 2nd branch)]
+  tma_port_1
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 1 (ALU)]
+  tma_port_6
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port 6 ([HSW+]Primary Branch and simple ALU)]
+
+tma_assists_group:
+  tma_avx_assists
+       [This metric estimates fraction of slots the CPU retired uops as a
+        result of handing SSE to AVX* or AVX* to SSE transition Assists]
+  tma_fp_assists
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Floating Point (FP) Assists]
+  tma_page_faults
+       [This metric roughly estimates fraction of slots the CPU retired uops
+        as a result of handing Page Faults]
+
+tma_backend_bound_group:
+  tma_core_bound
+       [This metric represents fraction of slots where Core non-memory issues
+        were of a bottleneck]
+  tma_memory_bound
+       [This metric represents fraction of slots the Memory subsystem within
+        the Backend was a bottleneck]
+
+tma_bad_speculation_group:
+  tma_branch_mispredicts
+       [This metric represents fraction of slots the CPU has wasted due to
+        Branch Misprediction]
+  tma_machine_clears
+       [This metric represents fraction of slots the CPU has wasted due to
+        Machine Clears]
+
+tma_branch_resteers_group:
+  tma_clears_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Machine Clears]
+  tma_mispredicts_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers as a result of Branch Misprediction at execution stage]
+  tma_unknown_branches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        new branch address clears]
+
+tma_core_bound_group:
+  tma_divider
+       [This metric represents fraction of cycles where the Divider unit was
+        active]
+  tma_ports_utilization
+       [This metric estimates fraction of cycles the CPU performance was
+        potentially limited due to Core computation issues (non
+        divider-related)]
+
+tma_dram_bound_group:
+  tma_mem_bandwidth
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to approaching bandwidth limits of external memory
+        (DRAM)]
+  tma_mem_latency
+       [This metric estimates fraction of cycles where the performance was
+        likely hurt due to latency from external memory (DRAM)]
+
+tma_dtlb_load_group:
+  tma_load_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the (first
+        level) DTLB was missed by load accesses, that later on hit in
+        second-level TLB (STLB)]
+  tma_load_stlb_miss
+       [This metric estimates the fraction of cycles where the Second-level
+        TLB (STLB) was missed by load accesses, performing a hardware page
+        walk]
+
+tma_dtlb_store_group:
+  tma_store_stlb_hit
+       [This metric roughly estimates the fraction of cycles where the TLB was
+        missed by store accesses, hitting in the second-level TLB (STLB)]
+  tma_store_stlb_miss
+       [This metric estimates the fraction of cycles where the STLB was missed
+        by store accesses, performing a hardware page walk]
+
+tma_fetch_bandwidth_group:
+  tma_dsb
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to DSB (decoded uop cache) fetch pipeline]
+  tma_mite
+       [This metric represents Core fraction of cycles in which CPU was likely
+        limited due to the MITE pipeline (the legacy decode pipeline)]
+
+tma_fetch_latency_group:
+  tma_branch_resteers
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Branch Resteers]
+  tma_dsb_switches
+       [This metric represents fraction of cycles the CPU was stalled due to
+        switches from DSB to MITE pipelines]
+  tma_icache_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        instruction cache misses]
+  tma_itlb_misses
+       [This metric represents fraction of cycles the CPU was stalled due to
+        Instruction TLB (ITLB) misses]
+  tma_lcp
+       [This metric represents fraction of cycles CPU was stalled due to
+        Length Changing Prefixes (LCPs)]
+  tma_ms_switches
+       [This metric estimates the fraction of cycles when the CPU was stalled
+        due to switches of uop delivery to the Microcode Sequencer (MS)]
+
+tma_fp_arith_group:
+  tma_fp_amx
+       [This metric approximates arithmetic floating-point (FP) matrix uops
+        fraction the CPU has retired (aggregated across all supported FP
+        datatypes in AMX engine)]
+  tma_fp_scalar
+       [This metric approximates arithmetic floating-point (FP) scalar uops
+        fraction the CPU has retired]
+  tma_fp_vector
+       [This metric approximates arithmetic floating-point (FP) vector uops
+        fraction the CPU has retired aggregated across all vector widths]
+  tma_x87_use
+       [This metric serves as an approximation of legacy x87 usage]
+
+tma_fp_vector_group:
+  tma_fp_vector_128b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 128-bit wide vectors]
+  tma_fp_vector_256b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 256-bit wide vectors]
+  tma_fp_vector_512b
+       [This metric approximates arithmetic FP vector uops fraction the CPU
+        has retired for 512-bit wide vectors]
+
+tma_frontend_bound_group:
+  tma_fetch_bandwidth
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend bandwidth issues]
+  tma_fetch_latency
+       [This metric represents fraction of slots the CPU was stalled due to
+        Frontend latency issues]
+
+tma_heavy_operations_group:
+  tma_few_uops_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        instructions that that are decoder into two or up to ([SNB+] four;
+        [ADL+] five) uops]
+  tma_microcode_sequencer
+       [This metric represents fraction of slots the CPU was retiring uops
+        fetched by the Microcode Sequencer (MS) unit]
+
+tma_int_operations_group:
+  tma_int_amx
+       [This metric approximates arithmetic Integer (Int) matrix uops fraction
+        the CPU has retired (aggregated across all supported Int datatypes in
+        AMX engine)]
+  tma_int_vector_128b
+       [This metric represents 128-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_int_vector_256b
+       [This metric represents 256-bit vector Integer ADD/SUB/SAD or VNNI
+        (Vector Neural Network Instructions) uops fraction the CPU has retired]
+  tma_shuffles
+       [This metric represents Shuffle (cross "vector lane" data transfers)
+        uops fraction the CPU has retired]
+
+tma_l1_bound_group:
+  tma_dtlb_load
+       [This metric roughly estimates the fraction of cycles where the Data
+        TLB (DTLB) was missed by load accesses]
+  tma_fb_full
+       [This metric does a *rough estimation* of how often L1D Fill Buffer
+        unavailability limited additional L1D miss memory access requests to
+        proceed]
+  tma_lock_latency
+       [This metric represents fraction of cycles the CPU spent handling cache
+        misses due to lock operations]
+  tma_split_loads
+       [This metric estimates fraction of cycles handling memory load split
+        accesses - load that cross 64-byte cache line boundary]
+  tma_store_fwd_blk
+       [This metric roughly estimates fraction of cycles when the memory
+        subsystem had loads blocked since they could not forward data from
+        earlier (in program order) overlapping stores]
+
+tma_l3_bound_group:
+  tma_contested_accesses
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to contested accesses]
+  tma_data_sharing
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling synchronizations due to data-sharing accesses]
+  tma_l3_hit_latency
+       [This metric represents fraction of cycles with demand load accesses
+        that hit the L3 cache under unloaded scenarios (possibly L3 latency
+        limited)]
+  tma_sq_full
+       [This metric measures fraction of cycles where the Super Queue (SQ) was
+        full taking into account all request-types and both hardware SMT
+        threads (Logical Processors)]
+
+tma_light_operations_group:
+  tma_fp_arith
+       [This metric represents overall arithmetic floating-point (FP)
+        operations fraction the CPU has executed (retired)]
+  tma_fused_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        fused instructions -- where one uop can represent multiple contiguous
+        instructions]
+  tma_int_operations
+       [This metric represents overall Integer (Int) select operations
+        fraction the CPU has executed (retired)]
+  tma_memory_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        memory operations -- uops for memory load or store accesses]
+  tma_non_fused_branches
+       [This metric represents fraction of slots where the CPU was retiring
+        branch instructions that were not fused]
+  tma_nop_instructions
+       [This metric represents fraction of slots where the CPU was retiring
+        NOP (no op) instructions]
+  tma_other_light_ops
+       [This metric represents the remaining light uops fraction the CPU has
+        executed - remaining means not covered by other sibling nodes. May
+        undercount due to FMA double counting]
+
+tma_mem_bandwidth_group:
+  tma_mba_stalls
+       [This metric estimates fraction of cycles where the core's performance
+        was likely hurt due to memory bandwidth Allocation feature (RDT's
+        memory bandwidth throttling)]
+
+tma_mem_latency_group:
+  tma_local_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from local memory]
+  tma_remote_cache
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote cache in other sockets including
+        synchronizations issues]
+  tma_remote_dram
+       [This metric estimates fraction of cycles while the memory subsystem
+        was handling loads from remote memory]
+
+tma_memory_bound_group:
+  tma_dram_bound
+       [This metric estimates how often the CPU was stalled on accesses to
+        external memory (DRAM) by loads]
+  tma_l1_bound
+       [This metric estimates how often the CPU was stalled without loads
+        missing the L1 data cache]
+  tma_l2_bound
+       [This metric estimates how often the CPU was stalled due to L2 cache
+        accesses by loads]
+  tma_l3_bound
+       [This metric estimates how often the CPU was stalled due to loads
+        accesses to L3 cache or contended with a sibling Core]
+  tma_pmm_bound
+       [This metric roughly estimates (based on idle latencies) how often the
+        CPU was stalled on accesses to external 3D-Xpoint (Crystal Ridge,
+        a.k.a]
+  tma_store_bound
+       [This metric estimates how often CPU was stalled due to RFO store
+        memory accesses; RFO store issue a read-for-ownership request before
+        the write]
+
+tma_microcode_sequencer_group:
+  tma_assists
+       [This metric estimates fraction of slots the CPU retired uops delivered
+        by the Microcode_Sequencer as a result of Assists]
+  tma_cisc
+       [This metric estimates fraction of cycles the CPU retired uops
+        originated from CISC (complex instruction set computer) instruction]
+
+tma_mite_group:
+  tma_decoder0_alone
+       [This metric represents fraction of cycles where decoder-0 was the only
+        active decoder]
+
+tma_ports_utilization_group:
+  tma_ports_utilized_0
+       [This metric represents fraction of cycles CPU executed no uops on any
+        execution port (Logical Processor cycles since ICL, Physical Core
+        cycles otherwise)]
+  tma_ports_utilized_1
+       [This metric represents fraction of cycles where the CPU executed total
+        of 1 uop per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+  tma_ports_utilized_2
+       [This metric represents fraction of cycles CPU executed total of 2 uops
+        per cycle on all execution ports (Logical Processor cycles since ICL,
+        Physical Core cycles otherwise)]
+  tma_ports_utilized_3m
+       [This metric represents fraction of cycles CPU executed total of 3 or
+        more uops per cycle on all execution ports (Logical Processor cycles
+        since ICL, Physical Core cycles otherwise)]
+
+tma_ports_utilized_0_group:
+  tma_amx_busy
+       [This metric estimates fraction of cycles where the Advanced Matrix
+        Extensions (AMX) execution engine was busy with tile (arithmetic)
+        operations]
+  tma_mixing_vectors
+       [The Mixing_Vectors metric gives the percentage of injected blend uops
+        out of all uops issued]
+  tma_serializing_operation
+       [This metric represents fraction of cycles the CPU issue-pipeline was
+        stalled due to serializing operations]
+
+tma_ports_utilized_3m_group:
+  tma_alu_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution ports for ALU operations]
+  tma_load_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port for Load operations]
+  tma_store_op_utilization
+       [This metric represents Core fraction of cycles CPU dispatched uops on
+        execution port for Store operations]
+
+tma_retiring_group:
+  tma_heavy_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        heavy-weight operations -- instructions that require two or more uops
+        or microcoded sequences]
+  tma_light_operations
+       [This metric represents fraction of slots where the CPU was retiring
+        light-weight operations -- instructions that require no more than one
+        uop (micro-operation)]
+
+tma_serializing_operation_group:
+  tma_memory_fence
+       [This metric represents fraction of cycles the CPU was stalled due to
+        LFENCE Instructions]
+  tma_slow_pause
+       [This metric represents fraction of cycles the CPU was stalled due to
+        PAUSE Instructions]
+
+tma_store_bound_group:
+  tma_dtlb_store
+       [This metric roughly estimates the fraction of cycles spent handling
+        first-level data TLB store misses]
+  tma_false_sharing
+       [This metric roughly estimates how often CPU was handling
+        synchronizations due to False Sharing]
+  tma_split_stores
+       [This metric represents rate of split store accesses]
+  tma_store_latency
+       [This metric estimates fraction of cycles the CPU spent handling L1D
+        store misses]
+  tma_streaming_stores
+       [This metric estimates how often CPU was stalled due to Streaming store
+        memory accesses; Streaming store optimize out a read request required
+        by RFO stores]
